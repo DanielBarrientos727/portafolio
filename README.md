@@ -22,12 +22,12 @@ archivos JSON ubicados en `data/`.
 
 El proyecto sigue tres principios:
 
-**KISS** — mantener el sistema simple y evitar complejidad innecesaria.
+**KISS** — mantener el sistema simple y evitar complejidad innecesaria ☄
 
-**FOSS** — priorizar herramientas, formatos y tecnologías abiertas.
+**FOSS** — priorizar herramientas, formatos y tecnologías abiertas ✞
 
 **Honestidad** — mostrar únicamente formación, conocimientos, proyectos y
-enlaces que representen realmente mi situación actual.
+enlaces que representen realmente mi situación actual ✬
 
 Este sitio es también un registro de aprendizaje y evolución profesional.
 
