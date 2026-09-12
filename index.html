@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,6 +29,11 @@
     content="#111416"
   />
 
+  <link
+    rel="canonical"
+    href="https://portafolio-bice-psi.vercel.app/"
+  />
+
   <title>Daniel Alejandro Barrientos Soto | Portafolio</title>
 
   <!-- Open Graph -->
@@ -51,6 +57,11 @@
     content="https://portafolio-bice-psi.vercel.app/"
   />
 
+  <meta
+    property="og:locale"
+    content="es_CO"
+  />
+
   <!-- Twitter / X -->
   <meta
     name="twitter:card"
@@ -71,21 +82,16 @@
   <link
     rel="icon"
     type="image/svg+xml"
-    href="./public/favicon.svg"
+    href="/favicon.svg"
   />
 
   <!-- Hoja de estilos -->
   <link
     rel="stylesheet"
-    href="./src/styles.css"
-  />
-
-  <!-- URL canónica -->
-  <link
-    rel="canonical"
-    href="https://portafolio-bice-psi.vercel.app/"
+    href="/src/styles.css"
   />
 </head>
+```
 
 <body>
 
@@ -148,6 +154,72 @@
           Ahora
         </a>
 
+<body>
+
+  <!-- ==================================================
+       ACCESIBILIDAD
+  =================================================== -->
+
+  <a
+    class="skip-link"
+    href="#main"
+  >
+    Saltar al contenido principal
+  </a>
+
+
+  <!-- ==================================================
+       ENCABEZADO
+  =================================================== -->
+
+  <header class="header">
+
+    <nav
+      class="nav wrap"
+      aria-label="Navegación principal"
+    >
+
+      <!-- Identidad -->
+      <a
+        class="wordmark"
+        href="#"
+        aria-label="Ir al inicio"
+      >
+        Science for life ⚝<span>.</span>
+      </a>
+
+
+      <!-- Menú móvil -->
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Abrir menú de navegación"
+      >
+        Menú
+      </button>
+
+
+      <!-- Navegación -->
+      <div
+        class="nav-links"
+        id="nav-links"
+      >
+
+        <a href="#sobre-mi">
+          Sobre mí
+        </a>
+
+        <a href="#ahora">
+          Ahora
+        </a>
+
+        <a href="#entorno">
+          Entorno
+        </a>
+
+        <a href="#proye
         <a href="#entorno">
           Entorno
         </a>
