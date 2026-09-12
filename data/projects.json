@@ -1,9 +1,14 @@
 [
   {
-    "name": "Orbital Daily",
-    "description": "Portal espacial estático (HTML, GitHub Pages) que integra la SpaceX API. Empezó como experimento para ver cómo quedaba una web hecha con ayuda de IA; el resultado no le convenció del todo, así que ahora la está reescribiendo para que sea 100% código propio.",
-    "tech": ["HTML", "GitHub Pages", "SpaceX API"],
+    "name": "Nombre del proyecto",
+    "description": "Descripción breve y concreta de lo que hace y qué problema intenta resolver.",
+    "tech": [
+      "Python",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
     "status": "En desarrollo",
-    "url": "https://github.com/DanielBarrientos727/Orbital-Daily"
+    "url": "https://github.com/DanielBarrientos727/nuevo-proyecto"
   }
 ]

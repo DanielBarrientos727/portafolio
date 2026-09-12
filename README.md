@@ -1,65 +1,57 @@
-# Sitio personal — Daniel Alejandro Barrientos Soto
+# Portafolio personal — Daniel Alejandro Barrientos Soto
 
-Sitio estático de una sola página, hecho con HTML, CSS y JavaScript (sin frameworks, sin build step). El contenido vive en `data/` como JSON, separado del diseño en `index.html` / `src/`.
+Portafolio personal de Daniel Alejandro Barrientos Soto, estudiante de
+Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo
+de Software.
 
-Principios: **KISS** (sin nada que no aporte), **FOSS** (sin dependencias ni servicios propietarios), y honestidad — el sitio solo muestra formación, proyectos y enlaces reales.
+El sitio está construido desde cero con tecnologías web fundamentales:
 
-## Ejecutar localmente
+- HTML
+- CSS
+- JavaScript
+- JSON
 
-Con Node.js instalado:
+No utiliza frameworks ni requiere un proceso de compilación.
 
-```bash
-npm run dev
-```
+La información del sitio está separada de la estructura y del diseño mediante
+archivos JSON ubicados en `data/`.
 
-O cualquier servidor estático desde la raíz del proyecto (hace falta un servidor, no `file://`, para que el navegador cargue los JSON de `data/`).
+---
 
-## Desplegar
+## Filosofía
 
-**Vercel:** sube el repositorio, importa el proyecto, tipo de framework "Other", sin build command, y despliega.
+El proyecto sigue tres principios:
 
-**GitHub Pages:** activa Pages apuntando a la rama principal, carpeta raíz.
+**KISS** — mantener el sistema simple y evitar complejidad innecesaria.
 
-No hay base de datos ni backend — es puramente estático.
+**FOSS** — priorizar herramientas, formatos y tecnologías abiertas.
 
-## Actualizar contenido
+**Honestidad** — mostrar únicamente formación, conocimientos, proyectos y
+enlaces que representen realmente mi situación actual.
 
-Todo el contenido editable vive en `data/`:
+Este sitio es también un registro de aprendizaje y evolución profesional.
 
-- **`profile.json`** — nombre, biografía, "ahora", formación (`education`) y tecnologías por categoría (`tech.actual` / `tech.aprendiendo` / `tech.interes`).
-- **`projects.json`** — proyectos públicos reales, con su estado (`Activo`, `En desarrollo`, `Experimental`, `Aprendizaje`, `Archivado`).
-- **`links.json`** — redes y contacto. `featured: true` hace que el enlace aparezca también en el hero.
-- **`documents.json`** — CV y certificaciones descargables.
+---
 
-Para añadir una certificación, coloca el PDF en `public/certifications/` y agrega una entrada:
-
-```json
-{
-  "name": "Nombre de la certificación",
-  "type": "PDF",
-  "file": "/public/certifications/archivo.pdf"
-}
-```
-
-Un documento sin campo `file` simplemente no se muestra — así nunca hay enlaces rotos ni promesas vacías.
-
-## Estructura
+## Estructura del proyecto
 
 ```text
 .
 ├── index.html
-├── src/
-│   ├── styles.css
-│   └── app.js
+├── package.json
+├── vercel.json
+│
 ├── data/
 │   ├── profile.json
 │   ├── projects.json
 │   ├── links.json
 │   └── documents.json
-├── public/
-│   ├── cv/
-│   ├── certifications/
-│   └── favicon.svg
-├── package.json
-└── vercel.json
-```
+│
+├── src/
+│   ├── app.js
+│   └── styles.css
+│
+└── public/
+    ├── cv/
+    ├── certifications/
+    └── favicon.svg

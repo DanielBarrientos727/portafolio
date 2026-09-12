@@ -2,98 +2,586 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daniel Alejandro Barrientos Soto</title>
-  <meta name="description" content="Sitio personal de Daniel Alejandro Barrientos Soto, estudiante de Ingeniería de Sistemas y Computación en Armenia, Quindío." />
-  <meta property="og:title" content="Daniel Alejandro Barrientos Soto" />
-  <meta property="og:description" content="Estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software." />
-  <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
-  <link rel="stylesheet" href="src/styles.css" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Portafolio personal de Daniel Alejandro Barrientos Soto, estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software."
+  />
+
+  <meta
+    name="author"
+    content="Daniel Alejandro Barrientos Soto"
+  />
+
+  <meta
+    name="robots"
+    content="index, follow"
+  />
+
+  <meta
+    name="theme-color"
+    content="#111416"
+  />
+
+  <title>Daniel Alejandro Barrientos Soto | Portafolio</title>
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="Daniel Alejandro Barrientos Soto | Portafolio"
+  />
+
+  <meta
+    property="og:description"
+    content="Estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software."
+  />
+
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <meta
+    property="og:url"
+    content="https://portafolio-bice-psi.vercel.app/"
+  />
+
+  <!-- Twitter / X -->
+  <meta
+    name="twitter:card"
+    content="summary"
+  />
+
+  <meta
+    name="twitter:title"
+    content="Daniel Alejandro Barrientos Soto | Portafolio"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software."
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/favicon.svg"
+  />
+
+  <!-- Hoja de estilos -->
+  <link
+    rel="stylesheet"
+    href="/src/styles.css"
+  />
+
+  <!-- URL canónica -->
+  <link
+    rel="canonical"
+    href="https://portafolio-bice-psi.vercel.app/"
+  />
 </head>
+
 <body>
-  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ==================================================
+       ACCESIBILIDAD
+  =================================================== -->
+
+  <a
+    class="skip-link"
+    href="#main"
+  >
+    Saltar al contenido principal
+  </a>
+
+
+  <!-- ==================================================
+       ENCABEZADO
+  =================================================== -->
 
   <header class="header">
-    <nav class="nav wrap">
-      <a class="wordmark" href="#">Daniel<span>.</span></a>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
-      <div class="nav-links" id="nav-links">
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#tecnologias">Tecnologías</a>
-        <a href="#formacion">Formación</a>
-        <a href="#documentos">Documentos</a>
-        <a href="#internet">Internet</a>
+
+    <nav
+      class="nav wrap"
+      aria-label="Navegación principal"
+    >
+
+      <!-- Identidad -->
+      <a
+        class="wordmark"
+        href="#"
+        aria-label="Ir al inicio"
+      >
+        Daniel<span>.</span>
+      </a>
+
+
+      <!-- Menú móvil -->
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        aria-label="Abrir menú de navegación"
+      >
+        Menú
+      </button>
+
+
+      <!-- Navegación -->
+      <div
+        class="nav-links"
+        id="nav-links"
+      >
+
+        <a href="#sobre-mi">
+          Sobre mí
+        </a>
+
+        <a href="#ahora">
+          Ahora
+        </a>
+
+        <a href="#proyectos">
+          Proyectos
+        </a>
+
+        <a href="#tecnologias">
+          Tecnologías
+        </a>
+
+        <a href="#formacion">
+          Formación
+        </a>
+
+        <a href="#documentos">
+          Documentos
+        </a>
+
+        <a href="#internet">
+          Internet
+        </a>
+
       </div>
+
     </nav>
+
   </header>
 
+
+  <!-- ==================================================
+       CONTENIDO PRINCIPAL
+  =================================================== -->
+
   <main id="main">
-    <section class="hero wrap">
-      <h1 id="name">Cargando…</h1>
-      <p class="role" id="role"></p>
-      <p class="intro" id="intro"></p>
-      <div class="hero-links" id="hero-links"></div>
+
+
+    <!-- ==================================================
+         HERO
+    =================================================== -->
+
+    <section
+      class="hero wrap"
+      aria-labelledby="name"
+    >
+
+      <p class="eyebrow">
+        Portafolio personal · 2026
+      </p>
+
+
+      <h1 id="name">
+        Cargando…
+      </h1>
+
+
+      <p
+        class="role"
+        id="role"
+      ></p>
+
+
+      <p
+        class="intro"
+        id="intro"
+      ></p>
+
+
+      <div
+        class="hero-links"
+        id="hero-links"
+        aria-label="Enlaces principales"
+      ></div>
+
     </section>
 
-    <section class="section wrap" id="sobre-mi">
-      <h2>Sobre mí</h2>
+
+    <!-- ==================================================
+         SOBRE MÍ
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="sobre-mi"
+      aria-labelledby="sobre-mi-title"
+    >
+
+      <h2 id="sobre-mi-title">
+        Sobre mí
+      </h2>
+
+
       <div class="reading">
+
         <p id="about"></p>
+
+        <p>
+          Mi formación comenzó en el desarrollo de software y actualmente
+          continúa con Ingeniería de Sistemas y Computación. Me interesa
+          comprender los sistemas desde sus fundamentos y construir tecnología
+          que conecte software, computación, electrónica y ciencia.
+        </p>
+
       </div>
+
     </section>
 
-    <section class="section wrap" id="ahora">
-      <h2>Ahora</h2>
-      <ul class="plain-list" id="now-list"></ul>
+
+    <!-- ==================================================
+         AHORA
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="ahora"
+      aria-labelledby="ahora-title"
+    >
+
+      <h2 id="ahora-title">
+        Ahora
+      </h2>
+
+
+      <ul
+        class="plain-list"
+        id="now-list"
+      ></ul>
+
     </section>
 
-    <section class="section wrap" id="proyectos">
-      <h2>Proyectos</h2>
-      <p class="reading" style="margin-bottom:18px">Repositorios públicos propios, con su estado real. Sin proyectos inventados.</p>
-      <div class="projects" id="projects-list"></div>
+
+    <!-- ==================================================
+         MI ENTORNO
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="entorno"
+      aria-labelledby="entorno-title"
+    >
+
+      <h2 id="entorno-title">
+        Mi entorno
+      </h2>
+
+
+      <div class="reading">
+
+        <p>
+          Trabajo principalmente en Linux y utilizo mi computadora como
+          laboratorio personal para aprender, programar, experimentar y
+          comprender mejor los sistemas sobre los que construyo software.
+        </p>
+
+
+        <dl class="environment">
+
+          <div>
+            <dt>Equipo</dt>
+            <dd>HP ProDesk 600 G4</dd>
+          </div>
+
+          <div>
+            <dt>Procesador</dt>
+            <dd>Intel Core i5-8500</dd>
+          </div>
+
+          <div>
+            <dt>Sistema</dt>
+            <dd>Fedora Linux</dd>
+          </div>
+
+          <div>
+            <dt>Entorno</dt>
+            <dd>KDE Plasma</dd>
+          </div>
+
+          <div>
+            <dt>Herramientas</dt>
+            <dd>Git · GitHub · VS Code</dd>
+          </div>
+
+        </dl>
+
+      </div>
+
     </section>
 
-    <section class="section wrap" id="tecnologias">
-      <h2>Tecnologías</h2>
+
+    <!-- ==================================================
+         PROYECTOS
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="proyectos"
+      aria-labelledby="proyectos-title"
+    >
+
+      <h2 id="proyectos-title">
+        Proyectos
+      </h2>
+
+
+      <p class="reading section-description">
+        Proyectos propios construidos durante mi formación y evolución
+        profesional. Esta sección crecerá con el tiempo.
+      </p>
+
+
+      <div
+        class="projects"
+        id="projects-list"
+      ></div>
+
+    </section>
+
+
+    <!-- ==================================================
+         TECNOLOGÍAS
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="tecnologias"
+      aria-labelledby="tecnologias-title"
+    >
+
+      <h2 id="tecnologias-title">
+        Tecnologías
+      </h2>
+
+
       <div class="tech-groups">
-        <div class="tech-group">
-          <h3>Actual</h3>
+
+
+        <article class="tech-group">
+
+          <h3>
+            Actual
+          </h3>
+
           <p id="tech-actual"></p>
-        </div>
-        <div class="tech-group">
-          <h3>Aprendiendo</h3>
+
+        </article>
+
+
+        <article class="tech-group">
+
+          <h3>
+            Aprendiendo
+          </h3>
+
           <p id="tech-aprendiendo"></p>
-        </div>
-        <div class="tech-group">
-          <h3>Interés futuro</h3>
+
+        </article>
+
+
+        <article class="tech-group">
+
+          <h3>
+            Interés futuro
+          </h3>
+
           <p id="tech-interes"></p>
-        </div>
+
+        </article>
+
+
       </div>
+
     </section>
 
-    <section class="section wrap" id="formacion">
-      <h2>Formación</h2>
-      <ol class="timeline" id="education-list"></ol>
+
+    <!-- ==================================================
+         FORMACIÓN
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="formacion"
+      aria-labelledby="formacion-title"
+    >
+
+      <h2 id="formacion-title">
+        Formación
+      </h2>
+
+
+      <ol
+        class="timeline"
+        id="education-list"
+      ></ol>
+
+
+      <div class="roadmap">
+
+        <h3>
+          Hoja de ruta
+        </h3>
+
+
+        <ol>
+
+          <li>
+            Consolidar los fundamentos de Ingeniería de Sistemas.
+          </li>
+
+          <li>
+            Fortalecer programación, Linux, redes y sistemas.
+          </li>
+
+          <li>
+            Profundizar en inteligencia artificial, robótica y control.
+          </li>
+
+          <li>
+            Participar en investigación y proyectos tecnológicos.
+          </li>
+
+          <li>
+            Continuar hacia estudios de posgrado.
+          </li>
+
+        </ol>
+
+      </div>
+
     </section>
 
-    <section class="section wrap" id="documentos">
-      <h2>Documentos</h2>
-      <div class="documents" id="documents-list"></div>
+
+    <!-- ==================================================
+         FILOSOFÍA
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="filosofia"
+      aria-labelledby="filosofia-title"
+    >
+
+      <h2 id="filosofia-title">
+        Una idea que me acompaña
+      </h2>
+
+
+      <blockquote class="quote">
+
+        <p>
+          Comprender la máquina antes de intentar construir la siguiente.
+        </p>
+
+      </blockquote>
+
     </section>
 
-    <section class="section wrap" id="internet">
-      <h2>Internet</h2>
-      <div class="links-list" id="links-list"></div>
+
+    <!-- ==================================================
+         DOCUMENTOS
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="documentos"
+      aria-labelledby="documentos-title"
+    >
+
+      <h2 id="documentos-title">
+        Documentos
+      </h2>
+
+
+      <div
+        class="documents"
+        id="documents-list"
+      ></div>
+
     </section>
+
+
+    <!-- ==================================================
+         INTERNET
+    =================================================== -->
+
+    <section
+      class="section wrap"
+      id="internet"
+      aria-labelledby="internet-title"
+    >
+
+      <h2 id="internet-title">
+        Internet
+      </h2>
+
+
+      <div
+        class="links-list"
+        id="links-list"
+      ></div>
+
+    </section>
+
+
   </main>
 
-  <footer class="footer wrap">
-    <p>Daniel Alejandro Barrientos Soto · Armenia, Quindío, Colombia</p>
-    <p>© 2026 · Hecho con software libre</p>
+
+  <!-- ==================================================
+       PIE DE PÁGINA
+  =================================================== -->
+
+  <footer class="footer">
+
+    <div class="wrap">
+
+      <p>
+        Daniel Alejandro Barrientos Soto ·
+        Armenia, Quindío, Colombia
+      </p>
+
+
+      <p>
+        © 2026 · Hecho con software libre
+      </p>
+
+    </div>
+
   </footer>
 
-  <script src="src/app.js"></script>
+
+  <!-- ==================================================
+       JAVASCRIPT
+  =================================================== -->
+
+  <script
+    src="/src/app.js"
+    defer
+  ></script>
+
 </body>
 </html>

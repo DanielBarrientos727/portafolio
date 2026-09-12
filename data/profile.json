@@ -3,27 +3,26 @@
   "role": "Estudiante de Ingeniería de Sistemas y Computación",
   "location": "Armenia, Quindío, Colombia",
   "email": "danielbarrientos727@gmail.com",
-  "intro": "Estudiante de Ingeniería de Sistemas y Computación (Universidad del Quindío) y Tecnólogo en Análisis y Desarrollo de Software (SENA). Me interesa entender cómo funcionan los sistemas y construir software, mientras exploro Linux, inteligencia artificial, robótica y computación.",
-  "about": "Empecé como Técnico en Programación de Software en el SENA. Hoy curso la Tecnología en Análisis y Desarrollo de Software y la Ingeniería de Sistemas y Computación en la Universidad del Quindío, en jornada nocturna. Es una formación en construcción: primero fundamentos de programación y sistemas, y desde ahí, con proyectos reales, ir acercándome a la robótica, la automática y la investigación.",
+
+  "intro": "Estudiante de Ingeniería de Sistemas y Computación en la Universidad del Quindío y Tecnólogo en Análisis y Desarrollo de Software en formación en el SENA. Construyo mi base en programación, desarrollo de software y sistemas, con especial interés en Linux, inteligencia artificial, robótica y automática.",
+
+  "about": "Mi formación comenzó con el Técnico en Programación de Software del SENA y continúa actualmente con la Tecnología en Análisis y Desarrollo de Software y la Ingeniería de Sistemas y Computación. Estoy construyendo una base sólida en programación, desarrollo de software y fundamentos de sistemas para, progresivamente, acercarme a áreas como inteligencia artificial, robótica, automática, sistemas autónomos y computación científica. Mi enfoque es aprender construyendo: entender los fundamentos, desarrollar proyectos reales y mejorar de forma constante.",
+
   "now": [
     "Estudiando Ingeniería de Sistemas y Computación en la Universidad del Quindío.",
-    "Cursando la Tecnología en Análisis y Desarrollo de Software (SENA).",
-    "Aprendiendo Linux y fundamentos de sistemas.",
-    "Construyendo proyectos personales pequeños.",
-    "Explorando IA, robótica y automática como áreas de interés."
+    "Cursando la Tecnología en Análisis y Desarrollo de Software en el SENA.",
+    "Fortaleciendo programación, desarrollo de software y fundamentos de sistemas.",
+    "Trabajando principalmente con Linux, Git y herramientas de desarrollo.",
+    "Construyendo proyectos personales desde cero.",
+    "Explorando inteligencia artificial, robótica y automática como áreas de interés."
   ],
+
   "education": [
     {
       "program": "Técnico en Programación de Software",
       "institution": "SENA, Regional Quindío",
       "period": "2023 – 2025",
       "status": "Graduado"
-    },
-    {
-      "program": "Ingeniería de Software",
-      "institution": "Corporación Universitaria Empresarial Alexander von Humboldt",
-      "period": "2026",
-      "status": "Un semestre cursado"
     },
     {
       "program": "Tecnología en Análisis y Desarrollo de Software",
@@ -34,13 +33,38 @@
     {
       "program": "Ingeniería de Sistemas y Computación",
       "institution": "Universidad del Quindío, jornada nocturna",
-      "period": "2026 – 2032",
+      "period": "2026 – presente",
       "status": "En curso"
     }
   ],
+
   "tech": {
-    "actual": ["HTML", "CSS", "JavaScript básico", "Linux", "Git"],
-    "aprendiendo": ["Análisis y desarrollo de software", "Fundamentos de sistemas", "Programación estructurada"],
-    "interes": ["Inteligencia artificial", "Robótica", "Automática", "Sistemas autónomos", "Sistemas embebidos", "Electrónica", "Computación científica", "Ciberseguridad"]
+    "actual": [
+      "HTML",
+      "CSS",
+      "JavaScript básico",
+      "Git",
+      "GitHub",
+      "Linux"
+    ],
+
+    "aprendiendo": [
+      "Python",
+      "SQL",
+      "Programación estructurada",
+      "Análisis y desarrollo de software",
+      "Fundamentos de sistemas",
+      "Redes"
+    ],
+
+    "interes": [
+      "Inteligencia artificial",
+      "Robótica",
+      "Automática",
+      "Sistemas autónomos",
+      "Sistemas embebidos",
+      "Electrónica",
+      "Computación científica"
+    ]
   }
 }
