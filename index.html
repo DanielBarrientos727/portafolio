@@ -1,5 +1,6 @@
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
 
@@ -28,14 +29,39 @@
     content="#111416"
   />
 
+  <!-- URL canónica -->
   <link
     rel="canonical"
     href="https://portafolio-bice-psi.vercel.app/"
   />
 
-  <title>Daniel Alejandro Barrientos Soto | Portafolio</title>
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
 
-  <!-- Open Graph -->
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="/favicon.svg"
+  />
+
+  <!-- Hoja de estilos -->
+  <link
+    rel="stylesheet"
+    href="/src/styles.css"
+  />
+
+  <title>
+    Daniel Alejandro Barrientos Soto | Portafolio
+  </title>
+
+  <!-- ==================================================
+       OPEN GRAPH
+  =================================================== -->
+
   <meta
     property="og:title"
     content="Daniel Alejandro Barrientos Soto | Portafolio"
@@ -61,7 +87,10 @@
     content="es_CO"
   />
 
-  <!-- Twitter / X -->
+  <!-- ==================================================
+       TWITTER / X
+  =================================================== -->
+
   <meta
     name="twitter:card"
     content="summary"
@@ -76,20 +105,8 @@
     name="twitter:description"
     content="Estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software."
   />
-
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    type="image/svg+xml"
-    href="/favicon.svg"
-  />
-
-  <!-- Hoja de estilos -->
-  <link
-    rel="stylesheet"
-    href="/src/styles.css"
-  />
 </head>
+
 <body>
 
   <!-- ==================================================
@@ -116,9 +133,10 @@
     >
 
       <!-- Identidad -->
+
       <a
         class="wordmark"
-        href="#"
+        href="#inicio"
         aria-label="Ir al inicio"
       >
         Daniel<span>.</span>
@@ -126,6 +144,7 @@
 
 
       <!-- Menú móvil -->
+
       <button
         class="menu-button"
         type="button"
@@ -133,42 +152,76 @@
         aria-controls="nav-links"
         aria-label="Abrir menú de navegación"
       >
-        Menú
+        <i
+          class="fa-solid fa-bars"
+          aria-hidden="true"
+        ></i>
+
+        <span>Menú</span>
       </button>
 
 
       <!-- Navegación -->
+
       <div
         class="nav-links"
         id="nav-links"
       >
 
         <a href="#sobre-mi">
-          Sobre mí
+          <i
+            class="fa-solid fa-user"
+            aria-hidden="true"
+          ></i>
+          <span>Sobre mí</span>
         </a>
 
         <a href="#ahora">
-          Ahora
+          <i
+            class="fa-solid fa-clock"
+            aria-hidden="true"
+          ></i>
+          <span>Ahora</span>
         </a>
 
         <a href="#entorno">
-          Entorno
+          <i
+            class="fa-solid fa-desktop"
+            aria-hidden="true"
+          ></i>
+          <span>Entorno</span>
         </a>
 
         <a href="#tecnologias">
-          Tecnologías
+          <i
+            class="fa-solid fa-microchip"
+            aria-hidden="true"
+          ></i>
+          <span>Tecnologías</span>
         </a>
 
         <a href="#formacion">
-          Formación
+          <i
+            class="fa-solid fa-graduation-cap"
+            aria-hidden="true"
+          ></i>
+          <span>Formación</span>
         </a>
 
         <a href="#documentos">
-          Documentos
+          <i
+            class="fa-solid fa-file-lines"
+            aria-hidden="true"
+          ></i>
+          <span>Documentos</span>
         </a>
 
         <a href="#internet">
-          Internet
+          <i
+            class="fa-solid fa-globe"
+            aria-hidden="true"
+          ></i>
+          <span>Internet</span>
         </a>
 
       </div>
@@ -191,11 +244,13 @@
 
     <section
       class="hero wrap"
+      id="inicio"
       aria-labelledby="name"
     >
 
       <p class="eyebrow">
-        Mi nuevo portafolio personal. Una visión de mi persona en digital ߷ 
+        Mi nuevo portafolio personal. Una mirada a mi formación,
+        intereses y evolución tecnológica.
       </p>
 
 
@@ -236,6 +291,11 @@
     >
 
       <h2 id="sobre-mi-title">
+        <i
+          class="fa-solid fa-user"
+          aria-hidden="true"
+        ></i>
+
         Sobre mí
       </h2>
 
@@ -246,9 +306,10 @@
 
         <p>
           Mi formación comenzó en el desarrollo de software y continúa
-          actualmente con Ingeniería de Sistemas y Computación y Análisis y
-          Desarrollo de Software. Mi interés está en comprender los sistemas
-          desde sus fundamentos y construir tecnología de manera progresiva.
+          actualmente con Ingeniería de Sistemas y Computación y Análisis
+          y Desarrollo de Software. Mi interés está en comprender los
+          sistemas desde sus fundamentos y construir tecnología de manera
+          progresiva.
         </p>
 
       </div>
@@ -267,6 +328,11 @@
     >
 
       <h2 id="ahora-title">
+        <i
+          class="fa-solid fa-clock"
+          aria-hidden="true"
+        ></i>
+
         Ahora
       </h2>
 
@@ -290,6 +356,11 @@
     >
 
       <h2 id="entorno-title">
+        <i
+          class="fa-solid fa-desktop"
+          aria-hidden="true"
+        ></i>
+
         Mi entorno
       </h2>
 
@@ -306,28 +377,78 @@
         <dl class="environment">
 
           <div>
-            <dt>Equipo</dt>
-            <dd>HP ProDesk 600 G4</dd>
+            <dt>
+              <i
+                class="fa-solid fa-computer"
+                aria-hidden="true"
+              ></i>
+
+              Equipo
+            </dt>
+
+            <dd>
+              HP ProDesk 600 G4
+            </dd>
           </div>
 
           <div>
-            <dt>Procesador</dt>
-            <dd>Intel Core i5-8500</dd>
+            <dt>
+              <i
+                class="fa-solid fa-microchip"
+                aria-hidden="true"
+              ></i>
+
+              Procesador
+            </dt>
+
+            <dd>
+              Intel Core i5-8500
+            </dd>
           </div>
 
           <div>
-            <dt>Sistema</dt>
-            <dd>Fedora 44 KDE EDITION</dd>
+            <dt>
+              <i
+                class="fa-brands fa-fedora"
+                aria-hidden="true"
+              ></i>
+
+              Sistema
+            </dt>
+
+            <dd>
+              Fedora 44 KDE Edition
+            </dd>
           </div>
 
           <div>
-            <dt>Entorno</dt>
-            <dd>KDE Plasma</dd>
+            <dt>
+              <i
+                class="fa-solid fa-window-maximize"
+                aria-hidden="true"
+              ></i>
+
+              Entorno
+            </dt>
+
+            <dd>
+              KDE Plasma
+            </dd>
           </div>
 
           <div>
-            <dt>Herramientas</dt>
-            <dd>Git · GitHub · VS Code</dd>
+            <dt>
+              <i
+                class="fa-solid fa-screwdriver-wrench"
+                aria-hidden="true"
+              ></i>
+
+              Herramientas
+            </dt>
+
+            <dd>
+              Git · GitHub · VS Code
+            </dd>
           </div>
 
         </dl>
@@ -339,7 +460,10 @@
 
     <!-- ==================================================
          PROYECTOS
-    =================================================== 
+         Sección reservada para una futura activación.
+    =================================================== -->
+
+    <!--
 
     <section
       class="section wrap"
@@ -348,6 +472,11 @@
     >
 
       <h2 id="proyectos-title">
+        <i
+          class="fa-solid fa-code"
+          aria-hidden="true"
+        ></i>
+
         Proyectos
       </h2>
 
@@ -365,119 +494,148 @@
 
     </section>
 
--->
+    -->
 
 
     <!-- ==================================================
-     ENTORNO TÉCNICO
-=================================================== -->
+         ENTORNO TÉCNICO
+    =================================================== -->
 
-<section
-  class="section wrap"
-  id="tecnologias"
-  aria-labelledby="tecnologias-title"
->
-  <h2 id="tecnologias-title">
-    Entorno técnico
-  </h2>
+    <section
+      class="section wrap"
+      id="tecnologias"
+      aria-labelledby="tecnologias-title"
+    >
 
-  <p class="reading section-description">
-    Mi formación parte de la Ingeniería de Sistemas y la construcción
-    de software, y avanza progresivamente hacia sistemas inteligentes,
-    robótica, automática, inteligencia artificial y electrónica.
-  </p>
+      <h2 id="tecnologias-title">
+        <i
+          class="fa-solid fa-microchip"
+          aria-hidden="true"
+        ></i>
 
-
-  <div class="tech-groups">
-
-    <!-- ==============================================
-         BASE ACTUAL
-    =============================================== -->
-
-    <article class="tech-group">
-
-      <h3>
-        Base actual
-      </h3>
-
-      <p id="tech-actual"></p>
-
-    </article>
+        Entorno técnico
+      </h2>
 
 
-    <!-- ==============================================
-         EN CONSTRUCCIÓN
-    =============================================== -->
-
-    <article class="tech-group">
-
-      <h3>
-        En construcción
-      </h3>
-
-      <p id="tech-aprendiendo"></p>
-
-    </article>
+      <p class="reading section-description">
+        Mi formación parte de la Ingeniería de Sistemas y la construcción
+        de software, y avanza progresivamente hacia sistemas inteligentes,
+        robótica, automática, inteligencia artificial y electrónica.
+      </p>
 
 
-    <!-- ==============================================
-         DIRECCIÓN TÉCNICA
-    =============================================== -->
+      <div class="tech-groups">
 
-    <article class="tech-group">
+        <!-- ==============================================
+             BASE ACTUAL
+        =============================================== -->
 
-      <h3>
-        Dirección técnica
-      </h3>
+        <article class="tech-group">
 
-      <p id="tech-interes"></p>
+          <h3>
+            <i
+              class="fa-solid fa-layer-group"
+              aria-hidden="true"
+            ></i>
 
-    </article>
+            Base actual
+          </h3>
 
-  </div>
+          <p id="tech-actual"></p>
+
+        </article>
 
 
-  <!-- ==============================================
-       ESTRUCTURA DE PROFUNDIZACIÓN
-  =============================================== -->
+        <!-- ==============================================
+             EN CONSTRUCCIÓN
+        =============================================== -->
 
-  <div class="roadmap">
+        <article class="tech-group">
 
-    <h3>
-      Estructura de formación
-    </h3>
+          <h3>
+            <i
+              class="fa-solid fa-hammer"
+              aria-hidden="true"
+            ></i>
 
-    <ol>
+            En construcción
+          </h3>
 
-      <li>
-        Computación y software
-      </li>
+          <p id="tech-aprendiendo"></p>
 
-      <li>
-        Sistemas y fundamentos matemáticos
-      </li>
+        </article>
 
-      <li>
-        Robótica como área integradora
-      </li>
 
-      <li>
-        Automática e inteligencia artificial
-      </li>
+        <!-- ==============================================
+             DIRECCIÓN TÉCNICA
+        =============================================== -->
 
-      <li>
-        Electrónica y sistemas embebidos
-      </li>
+        <article class="tech-group">
 
-      <li>
-        Computación científica e investigación
-      </li>
+          <h3>
+            <i
+              class="fa-solid fa-compass"
+              aria-hidden="true"
+            ></i>
 
-    </ol>
+            Dirección técnica
+          </h3>
 
-  </div>
+          <p id="tech-interes"></p>
 
-</section>
+        </article>
+
+      </div>
+
+
+      <!-- ==============================================
+           ESTRUCTURA DE PROFUNDIZACIÓN
+      =============================================== -->
+
+      <div class="roadmap">
+
+        <h3>
+          <i
+            class="fa-solid fa-route"
+            aria-hidden="true"
+          ></i>
+
+          Estructura de formación
+        </h3>
+
+
+        <ol>
+
+          <li>
+            Computación y software
+          </li>He corregido varias cosas que estaban un poco flojas: la URL canónica tenía sintaxis Markdown dentro del href, los metadatos Open Graph/Twitter estaban escapados incorrectamente, el enlace # del logotipo ahora lleva realmente al inicio, mejoré el texto del hero y añadí Font Awesome de forma consistente en navegación, secciones, menú y pie de página.
+
+          <li>
+            Sistemas y fundamentos matemáticos
+          </li>
+
+          <li>
+            Robótica como área integradora
+          </li>
+
+          <li>
+            Automática e inteligencia artificial
+          </li>
+
+          <li>
+            Electrónica y sistemas embebidos
+          </li>
+
+          <li>
+            Computación científica e investigación
+          </li>
+
+        </ol>
+
+      </div>
+
+    </section>
+
 
     <!-- ==================================================
          FORMACIÓN
@@ -490,6 +648,11 @@
     >
 
       <h2 id="formacion-title">
+        <i
+          class="fa-solid fa-graduation-cap"
+          aria-hidden="true"
+        ></i>
+
         Formación
       </h2>
 
@@ -503,6 +666,11 @@
       <div class="roadmap">
 
         <h3>
+          <i
+            class="fa-solid fa-map"
+            aria-hidden="true"
+          ></i>
+
           Hoja de ruta
         </h3>
 
@@ -547,6 +715,11 @@
     >
 
       <h2 id="filosofia-title">
+        <i
+          class="fa-solid fa-lightbulb"
+          aria-hidden="true"
+        ></i>
+
         Una idea que me acompaña
       </h2>
 
@@ -573,6 +746,11 @@
     >
 
       <h2 id="documentos-title">
+        <i
+          class="fa-solid fa-file-lines"
+          aria-hidden="true"
+        ></i>
+
         Documentos
       </h2>
 
@@ -596,6 +774,11 @@
     >
 
       <h2 id="internet-title">
+        <i
+          class="fa-solid fa-globe"
+          aria-hidden="true"
+        ></i>
+
         Internet
       </h2>
 
@@ -606,7 +789,6 @@
       ></div>
 
     </section>
-
 
   </main>
 
@@ -620,13 +802,22 @@
     <div class="wrap">
 
       <p>
+        <i
+          class="fa-solid fa-location-dot"
+          aria-hidden="true"
+        ></i>
+
         Daniel Alejandro Barrientos Soto ·
         Armenia, Quindío, Colombia 🇨🇴
       </p>
 
 
       <p>
-        © 2026 · Hecho con amor ♥ 
+        © 2026 · Hecho con amor
+        <i
+          class="fa-solid fa-heart"
+          aria-hidden="true"
+        ></i>
       </p>
 
     </div>
@@ -645,3 +836,4 @@
 
 </body>
 </html>
+```
