@@ -1,0 +1,9 @@
+{
+  "name": "sitio-personal-daniel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio personal de Daniel Alejandro Barrientos Soto",
+  "scripts": {
+    "dev": "npx --yes serve ."
+  }
+}

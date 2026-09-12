@@ -1,0 +1,46 @@
+{
+  "name": "Daniel Alejandro Barrientos Soto",
+  "role": "Estudiante de Ingeniería de Sistemas y Computación",
+  "location": "Armenia, Quindío, Colombia",
+  "email": "danielbarrientos727@gmail.com",
+  "intro": "Estudiante de Ingeniería de Sistemas y Computación (Universidad del Quindío) y Tecnólogo en Análisis y Desarrollo de Software (SENA). Me interesa entender cómo funcionan los sistemas y construir software, mientras exploro Linux, inteligencia artificial, robótica y computación.",
+  "about": "Empecé como Técnico en Programación de Software en el SENA. Hoy curso la Tecnología en Análisis y Desarrollo de Software y la Ingeniería de Sistemas y Computación en la Universidad del Quindío, en jornada nocturna. Es una formación en construcción: primero fundamentos de programación y sistemas, y desde ahí, con proyectos reales, ir acercándome a la robótica, la automática y la investigación.",
+  "now": [
+    "Estudiando Ingeniería de Sistemas y Computación en la Universidad del Quindío.",
+    "Cursando la Tecnología en Análisis y Desarrollo de Software (SENA).",
+    "Aprendiendo Linux y fundamentos de sistemas.",
+    "Construyendo proyectos personales pequeños.",
+    "Explorando IA, robótica y automática como áreas de interés."
+  ],
+  "education": [
+    {
+      "program": "Técnico en Programación de Software",
+      "institution": "SENA, Regional Quindío",
+      "period": "2023 – 2025",
+      "status": "Graduado"
+    },
+    {
+      "program": "Ingeniería de Software",
+      "institution": "Corporación Universitaria Empresarial Alexander von Humboldt",
+      "period": "2026",
+      "status": "Un semestre cursado"
+    },
+    {
+      "program": "Tecnología en Análisis y Desarrollo de Software",
+      "institution": "SENA, modalidad virtual",
+      "period": "2026 – 2028",
+      "status": "En curso"
+    },
+    {
+      "program": "Ingeniería de Sistemas y Computación",
+      "institution": "Universidad del Quindío, jornada nocturna",
+      "period": "2026 – 2032",
+      "status": "En curso"
+    }
+  ],
+  "tech": {
+    "actual": ["HTML", "CSS", "JavaScript básico", "Linux", "Git"],
+    "aprendiendo": ["Análisis y desarrollo de software", "Fundamentos de sistemas", "Programación estructurada"],
+    "interes": ["Inteligencia artificial", "Robótica", "Automática", "Sistemas autónomos", "Sistemas embebidos", "Electrónica", "Computación científica", "Ciberseguridad"]
+  }
+}

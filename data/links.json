@@ -1,0 +1,62 @@
+[
+  {
+    "label": "GitHub",
+    "handle": "@DanielBarrientos727",
+    "url": "https://github.com/DanielBarrientos727",
+    "featured": true
+  },
+  {
+    "label": "LinkedIn",
+    "handle": "Daniel Alejandro Barrientos Soto",
+    "url": "https://www.linkedin.com/in/daniel-alejandro-barrientos-soto-33272b296/",
+    "featured": true
+  },
+  {
+    "label": "Email",
+    "handle": "danielbarrientos727@gmail.com",
+    "url": "mailto:danielbarrientos727@gmail.com",
+    "featured": true
+  },
+  {
+    "label": "X",
+    "handle": "@dbarrientos_dev",
+    "url": "https://x.com/dbarrientos_dev",
+    "featured": false
+  },
+  {
+    "label": "Bluesky",
+    "handle": "@kilonova727.bsky.social",
+    "url": "https://bsky.app/profile/kilonova727.bsky.social",
+    "featured": false
+  },
+  {
+    "label": "Instagram",
+    "handle": "@kilonova727",
+    "url": "https://instagram.com/kilonova727",
+    "featured": false
+  },
+  {
+    "label": "Hugging Face",
+    "handle": "dbarrientos-dev",
+    "url": "https://huggingface.co/dbarrientos-dev",
+    "featured": false
+  },
+  {
+    "label": "ORCID",
+    "handle": "0009-0007-5141-0201",
+    "url": "https://orcid.org/0009-0007-5141-0201",
+    "featured": false
+  },
+  {
+    "label": "Guns.lol",
+    "handle": "dbarrientosdev",
+    "url": "https://guns.lol/dbarrientosdev",
+    "featured": false
+  },
+  {
+    "label": "Ko-fi",
+    "handle": "dbarrientos_dev",
+    "url": "https://ko-fi.com/dbarrientos_dev",
+    "featured": false
+  }
+]

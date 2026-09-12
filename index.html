@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel Alejandro Barrientos Soto</title>
+  <meta name="description" content="Sitio personal de Daniel Alejandro Barrientos Soto, estudiante de Ingeniería de Sistemas y Computación en Armenia, Quindío." />
+  <meta property="og:title" content="Daniel Alejandro Barrientos Soto" />
+  <meta property="og:description" content="Estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="header">
+    <nav class="nav wrap">
+      <a class="wordmark" href="#">Daniel<span>.</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links">Menú</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#formacion">Formación</a>
+        <a href="#documentos">Documentos</a>
+        <a href="#internet">Internet</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap">
+      <h1 id="name">Cargando…</h1>
+      <p class="role" id="role"></p>
+      <p class="intro" id="intro"></p>
+      <div class="hero-links" id="hero-links"></div>
+    </section>
+
+    <section class="section wrap" id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <div class="reading">
+        <p id="about"></p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="ahora">
+      <h2>Ahora</h2>
+      <ul class="plain-list" id="now-list"></ul>
+    </section>
+
+    <section class="section wrap" id="proyectos">
+      <h2>Proyectos</h2>
+      <p class="reading" style="margin-bottom:18px">Repositorios públicos propios, con su estado real. Sin proyectos inventados.</p>
+      <div class="projects" id="projects-list"></div>
+    </section>
+
+    <section class="section wrap" id="tecnologias">
+      <h2>Tecnologías</h2>
+      <div class="tech-groups">
+        <div class="tech-group">
+          <h3>Actual</h3>
+          <p id="tech-actual"></p>
+        </div>
+        <div class="tech-group">
+          <h3>Aprendiendo</h3>
+          <p id="tech-aprendiendo"></p>
+        </div>
+        <div class="tech-group">
+          <h3>Interés futuro</h3>
+          <p id="tech-interes"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="formacion">
+      <h2>Formación</h2>
+      <ol class="timeline" id="education-list"></ol>
+    </section>
+
+    <section class="section wrap" id="documentos">
+      <h2>Documentos</h2>
+      <div class="documents" id="documents-list"></div>
+    </section>
+
+    <section class="section wrap" id="internet">
+      <h2>Internet</h2>
+      <div class="links-list" id="links-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>Daniel Alejandro Barrientos Soto · Armenia, Quindío, Colombia</p>
+    <p>© 2026 · Hecho con software libre</p>
+  </footer>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
