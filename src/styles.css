@@ -1,10 +1,11 @@
 /* =========================================================
-   PORTAFOLIO PERSONAL — DANIEL ALEJANDRO BARRIENTOS SOTO
-   ---------------------------------------------------------
+   PORTAFOLIO PERSONAL
+   Daniel Alejandro Barrientos Soto
+
    Identidad visual:
    - Fondo oscuro
    - Texto blanco
-   - Dorado como color de acento
+   - Dorado como único color de acento
    - Estética técnica, sobria y minimalista
    - Perfil profesional junior
    ========================================================= */
@@ -391,16 +392,12 @@ button:focus-visible {
 
   from {
     opacity: 0;
-
-    transform:
-      translateY(10px);
+    transform: translateY(10px);
   }
 
   to {
     opacity: 1;
-
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
 }
 
@@ -841,6 +838,7 @@ button:focus-visible {
   padding: 22px 0;
 
   border-top: 1px solid var(--line);
+
   border-bottom: 1px solid var(--line);
 }
 
@@ -891,6 +889,7 @@ button:focus-visible {
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
   gap: 18px;
@@ -950,8 +949,7 @@ button:focus-visible {
 
   border-bottom: 1px solid var(--line);
 
-  transition:
-    color 0.18s ease;
+  transition: color 0.18s ease;
 }
 
 
@@ -1021,7 +1019,7 @@ button:focus-visible {
 
 
 /* =========================================================
-   MOBILE
+   MENÚ Y DISEÑO MÓVIL
    ========================================================= */
 
 @media (max-width: 600px) {
@@ -1041,13 +1039,13 @@ button:focus-visible {
   }
 
 
-  /* Menú móvil visible */
+  /* Mostramos el botón */
   .menu-button {
     display: block;
   }
 
 
-  /* Menú desplegable */
+  /* Ocultamos el menú inicialmente */
   .nav-links {
     position: absolute;
 
@@ -1073,19 +1071,19 @@ button:focus-visible {
   }
 
 
-  /* Estado abierto */
+  /* Menú abierto mediante JavaScript */
   .nav-links.open {
     display: flex;
   }
 
 
-  /* Elementos del menú */
+  /* Elementos del menú móvil */
   .nav-links a {
     padding: 9px;
   }
 
 
-  /* Entorno técnico en columna */
+  /* Entorno técnico en una sola columna */
   .environment > div {
     grid-template-columns: 1fr;
 

@@ -27,7 +27,7 @@ const $ = (selector) => document.querySelector(selector);
 
 
 /* =========================================================
-   ICONO DE ENLACE
+   ICONO DE ENLACE EXTERNO
    ========================================================= */
 
 const externalIcon = `
@@ -112,8 +112,8 @@ if (menu) {
    ========================================================= */
 
 /**
- * Escapa caracteres especiales antes de introducir
- * contenido proveniente de JSON mediante innerHTML.
+ * Escapa caracteres especiales antes de insertar
+ * contenido procedente de los archivos JSON.
  *
  * @param {unknown} value
  * @returns {string}
@@ -129,11 +129,11 @@ function escapeHtml(value) {
 
 
 /* =========================================================
-   ENLACES DESTACADOS
+   ENLACES DESTACADOS DEL HERO
    ========================================================= */
 
 /**
- * Renderiza enlaces destacados del hero.
+ * Renderiza los enlaces destacados de la portada.
  *
  * @param {string} selector
  * @param {Array} links
@@ -145,8 +145,15 @@ function addFeaturedLinks(selector, links = []) {
     return;
   }
 
-  target.innerHTML = links
-    .filter((link) => link && link.url && link.label)
+  const validLinks = links.filter(
+    (link) =>
+      link &&
+      link.url &&
+      link.label &&
+      link.featured === true
+  );
+
+  target.innerHTML = validLinks
     .map((link) => {
       const label = escapeHtml(link.label);
       const url = escapeHtml(link.url);
@@ -171,7 +178,7 @@ function addFeaturedLinks(selector, links = []) {
    ========================================================= */
 
 /**
- * Renderiza la lista completa de enlaces.
+ * Renderiza todos los enlaces públicos.
  *
  * @param {string} selector
  * @param {Array} links
@@ -203,7 +210,9 @@ function addNetworkLinks(selector, links = []) {
   target.innerHTML = validLinks
     .map((link) => {
       const label = escapeHtml(link.label);
-      const handle = escapeHtml(link.handle ?? "");
+      const handle = escapeHtml(
+        link.handle ?? ""
+      );
       const url = escapeHtml(link.url);
 
       return `
@@ -245,7 +254,10 @@ function renderTechGroup(selector, items = []) {
     return;
   }
 
-  if (!Array.isArray(items) || items.length === 0) {
+  if (
+    !Array.isArray(items) ||
+    items.length === 0
+  ) {
     target.textContent = "Por definir.";
     return;
   }
@@ -263,11 +275,11 @@ function renderTechGroup(selector, items = []) {
 
 
 /* =========================================================
-   LISTA "AHORA"
+   SECCIÓN "AHORA"
    ========================================================= */
 
 /**
- * Renderiza lo que Daniel está haciendo actualmente.
+ * Renderiza las actividades actuales.
  *
  * @param {Array} items
  */
@@ -278,7 +290,10 @@ function renderNow(items = []) {
     return;
   }
 
-  if (!Array.isArray(items) || items.length === 0) {
+  if (
+    !Array.isArray(items) ||
+    items.length === 0
+  ) {
     target.innerHTML = `
       <li>
         Información pendiente de actualizar.
@@ -301,7 +316,7 @@ function renderNow(items = []) {
 
 
 /* =========================================================
-   FORMACIÓN
+   FORMACIÓN ACADÉMICA
    ========================================================= */
 
 /**
@@ -316,10 +331,16 @@ function renderEducation(education = []) {
     return;
   }
 
-  if (!Array.isArray(education) || education.length === 0) {
+  if (
+    !Array.isArray(education) ||
+    education.length === 0
+  ) {
     target.innerHTML = `
       <li>
-        <h3>Formación en actualización</h3>
+        <h3>
+          Formación en actualización
+        </h3>
+
         <span class="institution">
           Información académica pendiente.
         </span>
@@ -331,14 +352,27 @@ function renderEducation(education = []) {
 
   target.innerHTML = education
     .map((item) => {
-      const program = escapeHtml(item.program);
-      const institution = escapeHtml(item.institution);
-      const period = escapeHtml(item.period);
-      const status = escapeHtml(item.status);
+      const program = escapeHtml(
+        item.program
+      );
+
+      const institution = escapeHtml(
+        item.institution
+      );
+
+      const period = escapeHtml(
+        item.period
+      );
+
+      const status = escapeHtml(
+        item.status
+      );
 
       return `
         <li>
-          <h3>${program}</h3>
+          <h3>
+            ${program}
+          </h3>
 
           <span class="institution">
             ${institution}
@@ -359,10 +393,10 @@ function renderEducation(education = []) {
    ========================================================= */
 
 /**
- * Renderiza proyectos.
+ * Renderiza los proyectos públicos.
  *
  * Los proyectos deben existir realmente en projects.json.
- * No se generan proyectos ficticios para rellenar la página.
+ * No se generan proyectos ficticios.
  *
  * @param {Array} projects
  */
@@ -373,7 +407,10 @@ function renderProjects(projects = []) {
     return;
   }
 
-  if (!Array.isArray(projects) || projects.length === 0) {
+  if (
+    !Array.isArray(projects) ||
+    projects.length === 0
+  ) {
     target.innerHTML = `
       <p class="empty">
         Todavía no hay proyectos públicos configurados.
@@ -385,36 +422,48 @@ function renderProjects(projects = []) {
 
   target.innerHTML = projects
     .map((project) => {
-      const name = escapeHtml(project.name);
-      const description = escapeHtml(project.description);
-      const status = escapeHtml(project.status);
-      const url = escapeHtml(project.url);
+      const name = escapeHtml(
+        project.name
+      );
 
-      const technologies = Array.isArray(project.tech)
-        ? project.tech
-            .map((tech) => escapeHtml(tech))
-            .join(" · ")
-        : "";
+      const description = escapeHtml(
+        project.description
+      );
 
-      const technologyMarkup = technologies
-        ? `
-          <span class="project-meta">
-            ${technologies}
-          </span>
-        `
-        : "";
+      const status = escapeHtml(
+        project.status
+      );
 
-      const githubMarkup = project.url
-        ? `
-          <a
-            href="${url}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub ↗
-          </a>
-        `
-        : "";
+      const technologies =
+        Array.isArray(project.tech)
+          ? project.tech
+              .map((tech) =>
+                escapeHtml(tech)
+              )
+              .join(" · ")
+          : "";
+
+      const technologyMarkup =
+        technologies
+          ? `
+            <span class="project-meta">
+              ${technologies}
+            </span>
+          `
+          : "";
+
+      const githubMarkup =
+        project.url
+          ? `
+            <a
+              href="${escapeHtml(project.url)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+          `
+          : "";
 
       return `
         <article class="project">
@@ -451,7 +500,7 @@ function renderProjects(projects = []) {
    ========================================================= */
 
 /**
- * Renderiza documentos disponibles.
+ * Renderiza los documentos públicos.
  *
  * @param {Array} documents
  */
@@ -462,12 +511,15 @@ function renderDocuments(documents = []) {
     return;
   }
 
-  const validDocuments = documents.filter(
-    (document) =>
-      document &&
-      document.file &&
-      document.name
-  );
+  const validDocuments =
+    Array.isArray(documents)
+      ? documents.filter(
+          (document) =>
+            document &&
+            document.file &&
+            document.name
+        )
+      : [];
 
   if (!validDocuments.length) {
     target.innerHTML = `
@@ -481,9 +533,17 @@ function renderDocuments(documents = []) {
 
   target.innerHTML = validDocuments
     .map((document) => {
-      const name = escapeHtml(document.name);
-      const type = escapeHtml(document.type ?? "");
-      const file = escapeHtml(document.file);
+      const name = escapeHtml(
+        document.name
+      );
+
+      const type = escapeHtml(
+        document.type ?? ""
+      );
+
+      const file = escapeHtml(
+        document.file
+      );
 
       return `
         <div class="document">
@@ -521,6 +581,9 @@ function renderDocuments(documents = []) {
  * Descarga un archivo JSON y comprueba
  * que la respuesta HTTP haya sido correcta.
  *
+ * Las rutas son relativas al index.html,
+ * que está en la raíz del proyecto.
+ *
  * @param {string} path
  * @returns {Promise<any>}
  */
@@ -544,8 +607,8 @@ async function fetchJson(path) {
    ========================================================= */
 
 /**
- * Muestra un mensaje cuando falla la carga
- * de los datos del sitio.
+ * Muestra un mensaje cuando los datos
+ * no pueden cargarse.
  */
 function showLoadError() {
   const hero = $(".hero");
@@ -560,7 +623,8 @@ function showLoadError() {
     return;
   }
 
-  const message = document.createElement("p");
+  const message =
+    document.createElement("p");
 
   message.className = "load-error";
 
@@ -579,7 +643,9 @@ async function loadSite() {
   try {
 
     /* -----------------------------------------------------
-       Cargar todos los datos en paralelo
+       Cargar los datos del sitio.
+
+       Las rutas son relativas al proyecto.
        ----------------------------------------------------- */
 
     const [
@@ -588,15 +654,15 @@ async function loadSite() {
       links,
       documents
     ] = await Promise.all([
-      fetchJson("/data/profile.json"),
-      fetchJson("/data/projects.json"),
-      fetchJson("/data/links.json"),
-      fetchJson("/data/documents.json")
+      fetchJson("./data/profile.json"),
+      fetchJson("./data/projects.json"),
+      fetchJson("./data/links.json"),
+      fetchJson("./data/documents.json")
     ]);
 
 
     /* -----------------------------------------------------
-       Información básica
+       Información principal
        ----------------------------------------------------- */
 
     if (profile?.name) {
@@ -613,13 +679,15 @@ async function loadSite() {
 
     if (name) {
       name.textContent =
-        profile?.name ?? "Daniel Alejandro Barrientos Soto";
+        profile?.name ??
+        "Daniel Alejandro Barrientos Soto";
     }
 
 
     if (role) {
       role.textContent =
-        profile?.role ?? "Estudiante de Ingeniería de Sistemas y Computación";
+        profile?.role ??
+        "Estudiante de Ingeniería de Sistemas y Computación";
     }
 
 
@@ -636,19 +704,29 @@ async function loadSite() {
 
 
     /* -----------------------------------------------------
-       Secciones dinámicas
+       Enlaces principales
        ----------------------------------------------------- */
 
     addFeaturedLinks(
       "#hero-links",
-      links.filter((link) => link.featured)
+      Array.isArray(links)
+        ? links
+        : []
     );
 
+
+    /* -----------------------------------------------------
+       Estado actual
+       ----------------------------------------------------- */
 
     renderNow(
       profile?.now ?? []
     );
 
+
+    /* -----------------------------------------------------
+       Tecnologías
+       ----------------------------------------------------- */
 
     renderTechGroup(
       "#tech-actual",
@@ -668,24 +746,42 @@ async function loadSite() {
     );
 
 
+    /* -----------------------------------------------------
+       Formación
+       ----------------------------------------------------- */
+
     renderEducation(
       profile?.education ?? []
     );
 
+
+    /* -----------------------------------------------------
+       Proyectos
+       ----------------------------------------------------- */
 
     renderProjects(
       projects
     );
 
 
+    /* -----------------------------------------------------
+       Documentos
+       ----------------------------------------------------- */
+
     renderDocuments(
       documents
     );
 
 
+    /* -----------------------------------------------------
+       Enlaces de Internet
+       ----------------------------------------------------- */
+
     addNetworkLinks(
       "#links-list",
-      links
+      Array.isArray(links)
+        ? links
+        : []
     );
 
   } catch (error) {
