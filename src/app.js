@@ -759,9 +759,11 @@ async function loadSite() {
        Proyectos
        ----------------------------------------------------- */
 
-    renderProjects(
-      projects
-    );
+    if (document.querySelector("#projects-list")) {
+      renderProjects(
+        projects
+      );
+    }
 
 
     /* -----------------------------------------------------
