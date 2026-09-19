@@ -1,61 +1,42 @@
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
-  <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
     content="Portafolio personal de Daniel Alejandro Barrientos Soto, estudiante de Ingeniería de Sistemas y Computación y Tecnólogo en Análisis y Desarrollo de Software."
-  />
+  >
 
-  <meta
-    name="author"
-    content="Daniel Alejandro Barrientos Soto"
-  />
+  <meta name="author" content="Daniel Alejandro Barrientos Soto">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#111416">
 
-  <meta
-    name="robots"
-    content="index, follow"
-  />
-
-  <meta
-    name="theme-color"
-    content="#111416"
-  />
-
-  <!-- URL canónica -->
   <link
     rel="canonical"
     href="https://portafolio-bice-psi.vercel.app/"
-  />
+  >
 
   <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  />
+  >
 
   <!-- Favicon -->
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href="./public/2.jpg"
-/>
+  <link
+    rel="icon"
+    type="image/jpeg"
+    href="./public/2.jpg"
+  >
 
-  <!-- Hoja de estilos -->
-<link
-  rel="stylesheet"
-  href="./src/styles.css"
-/>
+  <!-- Estilos -->
+  <link rel="stylesheet" href="./src/styles.css">
 
-  <title>
-    Daniel Alejandro Barrientos Soto | Portafolio
-  </title>
+  <title>Daniel Alejandro Barrientos Soto | Portafolio</title>
+</head>
+```
 
   <!-- ==================================================
        OPEN GRAPH
@@ -108,243 +89,161 @@
 
 <body>
 
-  <!-- ==================================================
-       ACCESIBILIDAD
-  =================================================== -->
-
-  <a
-    class="skip-link"
-    href="#main"
-  >
-    Saltar al contenido principal
-  </a>
 
 
-  <!-- ==================================================
-       ENCABEZADO
-  =================================================== -->
+<!-- ==================================================
+     ACCESIBILIDAD
+================================================== -->
+<a class="skip-link" href="#main">
+  Saltar al contenido principal
+</a>
 
-  <header class="header">
+<!-- ==================================================
+     ENCABEZADO
+================================================== -->
+<header class="header">
+  <nav class="nav wrap" aria-label="Navegación principal">
 
-    <nav
-      class="nav wrap"
-      aria-label="Navegación principal"
+    <a class="wordmark" href="#inicio" aria-label="Ir al inicio">
+      Daniel<span>.</span>
+    </a>
+
+    <button
+      class="menu-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      aria-label="Abrir menú de navegación"
     >
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      <span>Menú</span>
+    </button>
 
-      <!-- Identidad -->
-
-      <a
-        class="wordmark"
-        href="#inicio"
-        aria-label="Ir al inicio"
-      >
-        Inicio<span>.</span>
+    <div class="nav-links" id="nav-links">
+      <a href="#sobre-mi">
+        <i class="fa-solid fa-user" aria-hidden="true"></i>
+        <span>Sobre mí</span>
       </a>
 
+      <a href="#ahora">
+        <i class="fa-solid fa-clock" aria-hidden="true"></i>
+        <span>Ahora</span>
+      </a>
 
-      <!-- Menú móvil -->
+      <a href="#entorno">
+        <i class="fa-solid fa-desktop" aria-hidden="true"></i>
+        <span>Entorno</span>
+      </a>
 
-      <button
-        class="menu-button"
-        type="button"
-        aria-expanded="false"
-        aria-controls="nav-links"
-        aria-label="Abrir menú de navegación"
-      >
-        <i
-          class="fa-solid fa-bars"
-          aria-hidden="true"
-        ></i>
+      <a href="#tecnologias">
+        <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+        <span>Tecnologías</span>
+      </a>
 
-        <span>Menú</span>
-      </button>
+      <a href="#formacion">
+        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+        <span>Formación</span>
+      </a>
 
+      <a href="#documentos">
+        <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+        <span>Documentos</span>
+      </a>
 
-      <!-- Navegación -->
+      <a href="#internet">
+        <i class="fa-solid fa-globe" aria-hidden="true"></i>
+        <span>Internet</span>
+      </a>
+    </div>
 
-      <div
-        class="nav-links"
-        id="nav-links"
-      >
-
-        <a href="#sobre-mi">
-          <i
-            class="fa-solid fa-user"
-            aria-hidden="true"
-          ></i>
-          <span>Sobre mí</span>
-        </a>
-
-        <a href="#ahora">
-          <i
-            class="fa-solid fa-clock"
-            aria-hidden="true"
-          ></i>
-          <span>Ahora</span>
-        </a>
-
-        <a href="#entorno">
-          <i
-            class="fa-solid fa-desktop"
-            aria-hidden="true"
-          ></i>
-          <span>Entorno</span>
-        </a>
-
-        <a href="#tecnologias">
-          <i
-            class="fa-solid fa-microchip"
-            aria-hidden="true"
-          ></i>
-          <span>Tecnologías</span>
-        </a>
-
-        <a href="#formacion">
-          <i
-            class="fa-solid fa-graduation-cap"
-            aria-hidden="true"
-          ></i>
-          <span>Formación</span>
-        </a>
-
-        <a href="#documentos">
-          <i
-            class="fa-solid fa-file-lines"
-            aria-hidden="true"
-          ></i>
-          <span>Documentos</span>
-        </a>
-
-        <a href="#internet">
-          <i
-            class="fa-solid fa-globe"
-            aria-hidden="true"
-          ></i>
-          <span>Internet</span>
-        </a>
-
-      </div>
-
-    </nav>
-
-  </header>
-
+  </nav>
+</header>
+```
 
   <!-- ==================================================
        CONTENIDO PRINCIPAL
   =================================================== -->
 
   <main id="main">
+<!-- ==================================================
+     HERO
+================================================== -->
+<section class="hero wrap" id="inicio" aria-labelledby="name">
+
+  <p class="eyebrow">
+    Portafolio personal · Formación · Tecnología · Evolución
+  </p>
+
+  <h1 id="name">Cargando…</h1>
+
+  <p class="role" id="role"></p>
+  <p class="intro" id="intro"></p>
+
+  <div
+    class="hero-links"
+    id="hero-links"
+    aria-label="Enlaces principales"
+  ></div>
+
+</section>
+```
 
 
-    <!-- ==================================================
-         HERO
-    =================================================== -->
+<!-- ==================================================
+     SOBRE MÍ
+================================================== -->
+<section
+  class="section wrap"
+  id="sobre-mi"
+  aria-labelledby="sobre-mi-title"
+>
+  <header class="section-header">
+    <h2 id="sobre-mi-title">
+      <i
+        class="fa-solid fa-user"
+        aria-hidden="true"
+      ></i>
+      Sobre mí
+    </h2>
+  </header>
 
-    <section
-      class="hero wrap"
-      id="inicio"
-      aria-labelledby="name"
-    >
+  <div class="about">
+    <figure class="about-image">
+      <img
+        src="./public/personal.png"
+        alt="Fotografía de Daniel en CUE AVH"
+      >
+    </figure>
 
-      <p class="eyebrow">
-        Mi nuevo portafolio personal. Una mirada a mi formación,
-        intereses y evolución tecnológica.
+    <div class="about-content reading">
+      <p id="about"></p>
+
+      <p>
+        Mi formación comenzó en el desarrollo de software y continúa
+        actualmente con Ingeniería de Sistemas y Computación y Análisis
+        y Desarrollo de Software. Mi interés está en comprender los
+        sistemas desde sus fundamentos y construir tecnología de manera
+        progresiva.
       </p>
+    </div>
+  </div>
+</section>
 
+<!-- ==================================================
+     AHORA
+================================================== -->
+<section
+  class="section wrap"
+  id="ahora"
+  aria-labelledby="ahora-title"
+>
+  <h2 id="ahora-title">
+    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+    Ahora
+  </h2>
 
-      <h1 id="name">
-        Cargando…
-      </h1>
-
-
-      <p
-        class="role"
-        id="role"
-      ></p>
-
-
-      <p
-        class="intro"
-        id="intro"
-      ></p>
-
-
-      <div
-        class="hero-links"
-        id="hero-links"
-        aria-label="Enlaces principales"
-      ></div>
-
-    </section>
-
-
-    <!-- ==================================================
-         SOBRE MÍ
-    =================================================== -->
-
-    <section
-      class="section wrap"
-      id="sobre-mi"
-      aria-labelledby="sobre-mi-title"
-    >
-
-      <h2 id="sobre-mi-title">
-        <i
-          class="fa-solid fa-user"
-          aria-hidden="true"
-        ></i>
-
-        Sobre mí
-      </h2>
-
-
-      <div class="reading">
-
-        <p id="about"></p>
-
-        <p>
-          Mi formación comenzó en el desarrollo de software y continúa
-          actualmente con Ingeniería de Sistemas y Computación y Análisis
-          y Desarrollo de Software. Mi interés está en comprender los
-          sistemas desde sus fundamentos y construir tecnología de manera
-          progresiva.
-        </p>
-
-      </div>
-
-      <img src="./public/personal.png" alt="Yo">
-
-    </section>
-
-
-    <!-- ==================================================
-         AHORA
-    =================================================== -->
-
-    <section
-      class="section wrap"
-      id="ahora"
-      aria-labelledby="ahora-title"
-    >
-
-      <h2 id="ahora-title">
-        <i
-          class="fa-solid fa-clock"
-          aria-hidden="true"
-        ></i>
-
-        Ahora
-      </h2>
-
-
-      <ul
-        class="plain-list"
-        id="now-list"
-      ></ul>
-
-    </section>
-
+  <ul class="plain-list" id="now-list"></ul>
+</section>
 
     <!-- ==================================================
          MI ENTORNO
