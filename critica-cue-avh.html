@@ -18,17 +18,13 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#08090b">
 
-  <!-- ==================================================
-       URL CANÓNICA
-  ================================================== -->
+  <!-- URL CANÓNICA -->
   <link
     rel="canonical"
     href="https://danielbarrientos727.github.io/portafolio/notas/critica-cue-avh.html"
   >
 
-  <!-- ==================================================
-       OPEN GRAPH
-  ================================================== -->
+  <!-- OPEN GRAPH -->
   <meta
     property="og:title"
     content="Crítica a la CUE Alexander von Humboldt | Daniel Barrientos"
@@ -63,9 +59,7 @@
     content="Daniel Alejandro Barrientos Soto"
   >
 
-  <!-- ==================================================
-       TWITTER / X
-  ================================================== -->
+  <!-- TWITTER / X -->
   <meta name="twitter:card" content="summary">
 
   <meta
@@ -78,34 +72,231 @@
     content="Reflexión personal sobre experiencia académica, calidad educativa, infraestructura y trato institucional."
   >
 
-  <!-- ==================================================
-       FAVICON
-  ================================================== -->
+  <!-- FAVICON -->
   <link
     rel="icon"
     type="image/jpeg"
     href="../public/2.jpg"
   >
 
-  <!-- ==================================================
-       FONT AWESOME
-  ================================================== -->
+  <!-- FONT AWESOME -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
   >
 
-  <!-- ==================================================
-       ESTILOS
-  ================================================== -->
-  <link
-    rel="stylesheet"
-    href="../src/styles.css"
-  >
+  <!-- ESTILOS -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <!-- ==================================================
-       DATOS ESTRUCTURADOS
-  ================================================== -->
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #08090b;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.8;
+    }
+
+    .wrap {
+      width: min(900px, 92%);
+      margin: 0 auto;
+    }
+
+    .header {
+      border-bottom: 1px solid #252525;
+      padding: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .wordmark {
+      color: #d4af37;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .wordmark span {
+      color: #ffffff;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: #d4af37;
+      color: #08090b;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .skip-link:focus {
+      left: 10px;
+      top: 10px;
+      background: #d4af37;
+      color: #08090b;
+      padding: 8px 12px;
+      z-index: 1000;
+    }
+
+    main {
+      padding: 60px 0;
+    }
+
+    .note-header {
+      margin-bottom: 50px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #d4af37;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    h1,
+    h2 {
+      color: #d4af37;
+      line-height: 1.3;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    h2 {
+      margin-top: 55px;
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+    }
+
+    .note-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    .note-meta span,
+    .note-meta time {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .note-meta i,
+    .footer i {
+      color: #d4af37;
+    }
+
+    .note-content p {
+      margin: 0 0 22px;
+      color: #ffffff;
+    }
+
+    .note-content strong {
+      color: #d4af37;
+    }
+
+    .note-footer {
+      margin-top: 60px;
+      padding-top: 25px;
+      border-top: 1px solid #252525;
+    }
+
+    .note-footer p {
+      color: #bdbdbd;
+      font-size: 0.9rem;
+    }
+
+    .note-footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .note-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      border-top: 1px solid #252525;
+      padding: 25px 0;
+      color: #bdbdbd;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 20px;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-author {
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      main {
+        padding: 40px 0;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <!-- DATOS ESTRUCTURADOS -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -136,12 +327,9 @@
   </title>
 </head>
 
-
 <body>
 
-  <!-- ==================================================
-       ACCESIBILIDAD
-  ================================================== -->
+  <!-- ACCESIBILIDAD -->
   <a
     class="skip-link"
     href="#main"
@@ -149,12 +337,8 @@
     Saltar al contenido principal
   </a>
 
-
-  <!-- ==================================================
-       ENCABEZADO
-  ================================================== -->
+  <!-- ENCABEZADO -->
   <header class="header">
-
     <nav
       class="nav wrap"
       aria-label="Navegación principal"
@@ -178,24 +362,18 @@
           aria-hidden="true"
         ></i>
 
-        <span>Notas</span>
+        <span>Volver</span>
       </a>
 
     </nav>
-
   </header>
 
-
-  <!-- ==================================================
-       CONTENIDO PRINCIPAL
-  ================================================== -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main id="main">
 
     <article class="note wrap">
 
-      <!-- ==================================================
-           ENCABEZADO DE LA PUBLICACIÓN
-      ================================================== -->
+      <!-- ENCABEZADO DE LA PUBLICACIÓN -->
       <header class="note-header">
 
         <p class="eyebrow">
@@ -230,10 +408,7 @@
 
       </header>
 
-
-      <!-- ==================================================
-           CONTENIDO DE LA NOTA
-      ================================================== -->
+      <!-- CONTENIDO DE LA NOTA -->
       <div class="reading note-content">
 
         <p>
@@ -250,7 +425,6 @@
           llevaron a retirarme y de las conclusiones que saqué de aquella
           experiencia.
         </p>
-
 
         <h2>
           Una experiencia que no cumplió mis expectativas
@@ -272,7 +446,6 @@
           en conjunto, hicieron que mi experiencia resultara muy inferior a
           lo que esperaba de una institución universitaria.
         </p>
-
 
         <h2>
           Una ingeniería necesita algo más que buenas intenciones
@@ -307,7 +480,6 @@
           experimentar, probar y construir.
         </p>
 
-
         <h2>
           Cuando la gestión termina pesando más que la formación
         </h2>
@@ -337,7 +509,6 @@
           Tener procedimientos no equivale automáticamente a tener una buena
           atención al estudiante.
         </p>
-
 
         <h2>
           El caso de Matemáticas Básicas
@@ -377,7 +548,6 @@
           desgastante.
         </p>
 
-
         <h2>
           El trato humano también forma parte de la calidad
         </h2>
@@ -403,7 +573,6 @@
           es sentir que la persona desaparece detrás del expediente.
         </p>
 
-
         <h2>
           Infraestructura, experiencia y percepción de calidad
         </h2>
@@ -426,7 +595,6 @@
           individuales quizá habrían sido soportables por separado. El problema
           fue su acumulación.
         </p>
-
 
         <h2>
           Por qué decidí irme
@@ -458,7 +626,6 @@
           Y aceptar eso también forma parte de madurar.
         </p>
 
-
         <h2>
           Lo que aprendí de la experiencia
         </h2>
@@ -477,7 +644,6 @@
           oportunidades, cultura académica y, sobre todo, la forma en que se
           trata al estudiante.
         </p>
-
 
         <h2>
           Mi conclusión
@@ -539,10 +705,7 @@
 
       </div>
 
-
-      <!-- ==================================================
-           PIE DE LA NOTA
-      ================================================== -->
+      <!-- PIE DE LA NOTA -->
       <footer class="note-footer">
 
         <p>
@@ -570,10 +733,7 @@
 
   </main>
 
-
-  <!-- ==================================================
-       PIE DE PÁGINA
-  ================================================== -->
+  <!-- PIE DE PÁGINA -->
   <footer class="footer">
 
     <div class="wrap footer-content">
@@ -592,10 +752,7 @@
       </p>
 
       <p class="footer-tech">
-        Construido con
-        <span aria-label="HTML, CSS y JavaScript">
-          HTML, CSS y JavaScript
-        </span>
+        Construido con HTML, CSS y JavaScript
       </p>
 
     </div>
