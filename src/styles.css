@@ -539,6 +539,19 @@ button:focus-visible {
 
 
 /* =========================================================
+   SOBRE MÍ (foto + texto en dos columnas)
+   ========================================================= */
+
+.about {
+  display: grid;
+
+  grid-template-columns: minmax(140px, 160px) 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+
+/* =========================================================
    FOTO DE PERFIL (sección "Sobre mí")
    ========================================================= */
 
@@ -658,6 +671,76 @@ button:focus-visible {
 
   font-size: var(--fs-sm);
   opacity: 0.8;
+}
+
+
+/* =========================================================
+   PERFILES (Cisco, SoloLearn, etc.)
+   Misma idea visual que .project: filas separadas por líneas,
+   sin tarjetas con sombra, para mantener el mismo lenguaje.
+   ========================================================= */
+
+.profiles {
+  display: grid;
+
+  border-top: 1px solid var(--line);
+}
+
+.profile-card {
+  display: flex;
+
+  gap: 16px;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-icon {
+  flex: none;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--radius);
+
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.profile-content h3 {
+  margin: 0 0 4px;
+
+  font-size: var(--fs-base);
+  font-weight: 680;
+}
+
+.profile-content p {
+  margin: 0 0 8px;
+
+  color: var(--muted);
+
+  font-size: var(--fs-base);
+}
+
+.profile-content a {
+  color: var(--accent);
+
+  font-size: var(--fs-sm);
+  font-weight: 650;
+
+  transition: color var(--transition);
+}
+
+.profile-content a:hover {
+  color: var(--accent-soft);
+
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 
@@ -993,6 +1076,55 @@ button:focus-visible {
   color: var(--accent);
 }
 
+.quote footer {
+  margin-top: 10px;
+
+  color: var(--quiet);
+
+  font-size: var(--fs-sm);
+  font-style: normal;
+}
+
+
+/* =========================================================
+   FILOSOFÍA (cita + foto)
+   ========================================================= */
+
+.philosophy-content {
+  display: grid;
+
+  grid-template-columns: 1fr minmax(200px, 260px);
+  gap: 2rem;
+  align-items: center;
+}
+
+.philosophy-image {
+  margin: 0;
+}
+
+.philosophy-image img {
+  display: block;
+  width: 100%;
+
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+
+  transition: transform var(--transition);
+}
+
+.philosophy-image img:hover {
+  transform: scale(1.02);
+}
+
+.philosophy-image figcaption {
+  margin-top: 0.6rem;
+
+  color: var(--quiet);
+
+  font-size: var(--fs-2xs);
+}
+
 
 /* =========================================================
    DOCUMENTOS
@@ -1141,6 +1273,12 @@ button:focus-visible {
   margin: 0;
 }
 
+.footer-location i {
+  color: var(--accent);
+
+  margin-right: 4px;
+}
+
 
 /* =========================================================
    DISEÑO MÓVIL
@@ -1207,6 +1345,13 @@ button:focus-visible {
   /* Elementos del menú móvil */
   .nav-links a {
     padding: 9px;
+  }
+
+
+  /* Foto + texto en una sola columna: Sobre mí y Filosofía */
+  .about,
+  .philosophy-content {
+    grid-template-columns: 1fr;
   }
 
 
@@ -1297,7 +1442,9 @@ button:focus-visible {
   .network svg,
   .handle,
   .about-image img,
-  .environment-image img {
+  .environment-image img,
+  .philosophy-image img,
+  .profile-content a {
     transition: none;
   }
 
