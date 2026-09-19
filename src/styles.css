@@ -1173,3 +1173,76 @@ button:focus-visible {
   border-radius: 50%;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
+.environment-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.environment-image {
+  margin: 0;
+}
+
+.environment-image img {
+  display: block;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+}
+
+.environment-image figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  opacity: 0.65;
+}
+
+.environment-image a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.environment {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+}
+
+.environment > div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.environment dt {
+  font-weight: 600;
+}
+
+.environment dt i {
+  width: 1.2rem;
+  margin-right: 0.4rem;
+}
+
+.environment dd {
+  margin: 0;
+  opacity: 0.8;
+}
+
+@media (max-width: 700px) {
+  .environment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .environment-image {
+    max-width: 420px;
+  }
+
+  .environment > div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
