@@ -45,22 +45,65 @@
 
       <a class="wordmark" href="#inicio" aria-label="Ir al inicio">Daniel<span>.</span></a>
 
-      <!-- Botón de menú hamburguesa (Font Awesome), solo visible en móvil -->
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú de navegación">
-        <i class="fa-solid fa-bars" aria-hidden="true"></i>
-        <span>Menú</span>
-      </button>
 
-      <div class="nav-links" id="nav-links">
-        <a href="#sobre-mi"><i class="fa-solid fa-user" aria-hidden="true"></i> <span>Sobre mí</span></a>
-        <a href="#ahora"><i class="fa-solid fa-clock" aria-hidden="true"></i> <span>Ahora</span></a>
-        <a href="#entorno"><i class="fa-solid fa-desktop" aria-hidden="true"></i> <span>Entorno</span></a>
-        <a href="#tecnologias"><i class="fa-solid fa-microchip" aria-hidden="true"></i> <span>Tecnologías</span></a>
-        <a href="#formacion"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> <span>Formación</span></a>
-        <a href="#documentos"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span>Documentos</span></a>
-        <a href="#internet"><i class="fa-solid fa-globe" aria-hidden="true"></i> <span>Internet</span></a>
-      </div>
+<!-- ==================================================
+     MENÚ DE NAVEGACIÓN
+================================================== -->
 
+<button
+  class="menu-button"
+  type="button"
+  aria-expanded="false"
+  aria-controls="nav-links"
+  aria-label="Abrir menú de navegación"
+>
+  <i class="fa-solid fa-bars" aria-hidden="true"></i>
+  <span>Menú</span>
+</button>
+
+<div class="nav-links" id="nav-links">
+
+  <a href="#sobre-mi">
+    <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <span>Sobre mí</span>
+  </a>
+
+  <a href="#ahora">
+    <i class="fa-solid fa-clock" aria-hidden="true"></i>
+    <span>Ahora</span>
+  </a>
+
+  <a href="#entorno">
+    <i class="fa-solid fa-desktop" aria-hidden="true"></i>
+    <span>Entorno</span>
+  </a>
+
+  <a href="#tecnologias">
+    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+    <span>Tecnologías</span>
+  </a>
+
+  <a href="#formacion">
+    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+    <span>Formación</span>
+  </a>
+
+  <a href="#documentos">
+    <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+    <span>Documentos</span>
+  </a>
+
+  <a href="#internet">
+    <i class="fa-solid fa-globe" aria-hidden="true"></i>
+    <span>Internet</span>
+  </a>
+
+  <a href="#notas">
+    <i class="fa-solid fa-pen" aria-hidden="true"></i>
+    <span>Notas</span>
+  </a>
+
+</div>
     </nav>
   </header>
 
@@ -254,6 +297,45 @@
       </div>
     </section>
 
+<!-- ==================================================
+     NOTAS
+================================================== -->
+
+<section
+  class="section wrap"
+  id="notas"
+  aria-labelledby="notas-title"
+>
+  <h2 id="notas-title">
+    <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
+    Notas
+  </h2>
+
+  <p class="reading section-description">
+    Ideas, opiniones y reflexiones sobre tecnología, programación,
+    ciencia, educación y mi proceso de formación.
+  </p>
+
+  <div class="notes-list">
+    <article class="note-card">
+      <time datetime="2026-09-15">
+        15 de septiembre de 2026
+      </time>
+
+      <h3>
+        <a href="./notas/critica-cue-avh.html">
+          Crítica a la CUE Alexander von Humboldt
+        </a>
+      </h3>
+
+      <p>
+        Una reflexión crítica sobre mi experiencia académica,
+        la formación profesional y la importancia de los
+        fundamentos, la calidad educativa y el trato humano.
+      </p>
+    </article>
+  </div>
+</section>
     <!-- ===================== DOCUMENTOS ===================== -->
     <section class="section wrap" id="documentos" aria-labelledby="documentos-title">
       <h2 id="documentos-title"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Documentos</h2>
