@@ -3,23 +3,29 @@
    Daniel Alejandro Barrientos Soto
 
    Identidad visual:
-   - Fondo oscuro
+   - Fondo muy oscuro, casi negro
    - Texto blanco
    - Dorado como único color de acento
-   - Estética técnica, sobria y minimalista
+   - Estética técnica, sobria y minimalista (sin gradientes,
+     sin efectos "hacker", inspirada en GNOME)
    - Perfil profesional junior
+
+   Este archivo está organizado en bloques y usa variables
+   (custom properties) para que los tamaños de letra, los
+   espacios y las transiciones sean siempre los mismos en
+   todo el sitio en vez de valores sueltos repetidos.
    ========================================================= */
 
 
 /* =========================================================
-   VARIABLES GLOBALES
+   VARIABLES GLOBALES (design tokens)
    ========================================================= */
 
 :root {
-  /* Colores principales */
-  --bg: #0d0f12;
-  --surface: #15181d;
-  --surface-hover: #191d23;
+  /* Colores principales — fondo más oscuro que antes */
+  --bg: #08090b;
+  --surface: #121419;
+  --surface-hover: #171a20;
 
   /* Líneas y bordes */
   --line: #292d34;
@@ -33,11 +39,31 @@
   --accent: #d6b25e;
   --accent-soft: #ead08a;
 
+  /* -----------------------------------------------------
+     Escala tipográfica: solo estos tamaños se usan en todo
+     el sitio. Así el texto se ve uniforme y consistente en
+     vez de tener decenas de tamaños distintos sueltos.
+     ----------------------------------------------------- */
+  --fs-2xs: 0.75rem;  /* etiquetas muy pequeñas: eyebrow, meta */
+  --fs-xs: 0.8rem;    /* texto discreto: footer, fechas, meta */
+  --fs-sm: 0.875rem;  /* texto secundario: nav, listas, enlaces */
+  --fs-base: 1rem;    /* texto de lectura normal */
+  --fs-lg: 1.3rem;    /* títulos de sección (h2) */
+  --fs-xl: clamp(1.05rem, 2vw, 1.25rem); /* cita destacada */
+  --fs-hero: clamp(2.2rem, 7vw, 4rem);   /* nombre en el hero */
+
+  /* Transición única para hover/estados: mismo "feel" en todo el sitio */
+  --transition: 0.18s ease;
+
+  /* Sombra e imágenes: pensada para fondos muy oscuros */
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+
   /* Layout */
   --max: 720px;
 
   /* Bordes */
   --radius: 6px;
+  --radius-lg: 16px;
 }
 
 
@@ -136,7 +162,7 @@ button:focus-visible {
 
   border-radius: var(--radius);
 
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
 }
 
@@ -158,7 +184,8 @@ button:focus-visible {
 
   border-bottom: 1px solid var(--line);
 
-  background: rgba(13, 15, 18, 0.94);
+  /* Igual de oscuro que --bg, con transparencia para el blur */
+  background: rgba(8, 9, 11, 0.94);
 
   backdrop-filter: blur(10px);
 }
@@ -184,7 +211,7 @@ button:focus-visible {
    ========================================================= */
 
 .wordmark {
-  font-size: 0.98rem;
+  font-size: var(--fs-base);
   font-weight: 750;
 
   letter-spacing: -0.03em;
@@ -208,14 +235,12 @@ button:focus-visible {
 
   color: var(--muted);
 
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
 }
 
 
 .nav-links a {
-  transition:
-    color 0.18s ease,
-    opacity 0.18s ease;
+  transition: color var(--transition), opacity var(--transition);
 }
 
 
@@ -262,7 +287,7 @@ button:focus-visible {
 
   color: var(--accent);
 
-  font-size: 0.78rem;
+  font-size: var(--fs-2xs);
   font-weight: 650;
 
   letter-spacing: 0.08em;
@@ -279,7 +304,7 @@ button:focus-visible {
 
   margin: 0;
 
-  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-size: var(--fs-hero);
 
   line-height: 1.02;
 
@@ -315,7 +340,7 @@ button:focus-visible {
 
   color: var(--muted);
 
-  font-size: 1rem;
+  font-size: var(--fs-base);
 }
 
 
@@ -337,11 +362,11 @@ button:focus-visible {
 .text-link {
   color: var(--accent);
 
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 
   font-weight: 650;
 
-  transition: color 0.18s ease;
+  transition: color var(--transition);
 }
 
 
@@ -354,7 +379,10 @@ button:focus-visible {
 
 
 /* =========================================================
-   ANIMACIÓN INICIAL
+   ANIMACIÓN DE ENTRADA (hero)
+   Un único momento de animación al cargar la página: el
+   hero aparece con un pequeño "fade + subida". No se repite
+   en cada sección para no saturar de movimiento la página.
    ========================================================= */
 
 @media (prefers-reduced-motion: no-preference) {
@@ -362,8 +390,7 @@ button:focus-visible {
   .hero > * {
     opacity: 0;
 
-    animation:
-      rise 0.55s ease forwards;
+    animation: rise 0.55s ease forwards;
   }
 
   .hero .eyebrow {
@@ -384,6 +411,16 @@ button:focus-visible {
 
   .hero .hero-links {
     animation-delay: 0.24s;
+  }
+
+  /* Las fotos del sitio (avatar y foto del entorno) reutilizan
+     esta misma animación al cargar, para que se sienta parte
+     del mismo lenguaje visual y no un efecto suelto aparte. */
+  .about-image,
+  .environment-image {
+    opacity: 0;
+    animation: rise 0.6s ease forwards;
+    animation-delay: 0.1s;
   }
 }
 
@@ -420,7 +457,7 @@ button:focus-visible {
 .section h2 {
   margin: 0 0 20px;
 
-  font-size: 1.3rem;
+  font-size: var(--fs-lg);
 
   line-height: 1.3;
 
@@ -502,46 +539,125 @@ button:focus-visible {
 
 
 /* =========================================================
-   ENTORNO TÉCNICO
+   FOTO DE PERFIL (sección "Sobre mí")
    ========================================================= */
 
+.about-image {
+  width: 160px;
+  margin: 0;
+}
+
+.about-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+
+  /* Borde sutil + sombra: en un fondo tan oscuro la sombra
+     sola casi no se nota, así que un borde fino ayuda a que
+     la foto no se "pierda" contra el fondo. */
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+
+  transition: transform var(--transition);
+}
+
+.about-image img:hover {
+  transform: scale(1.03);
+}
+
+
+/* =========================================================
+   ENTORNO TÉCNICO (con foto opcional al lado)
+   ========================================================= */
+
+.environment-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.environment-image {
+  margin: 0;
+}
+
+.environment-image img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+
+  transition: transform var(--transition);
+}
+
+.environment-image img:hover {
+  transform: scale(1.02);
+}
+
+.environment-image figcaption {
+  margin-top: 0.6rem;
+
+  color: var(--quiet);
+
+  font-size: var(--fs-2xs);
+  line-height: 1.4;
+}
+
+.environment-image a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Lista de datos (SO, editor, teclado, etc.) */
 .environment {
-  margin: 28px 0 0;
+  display: grid;
+
+  gap: 1rem;
+
+  margin: 1.5rem 0 0;
 
   padding: 0;
 
   border-top: 1px solid var(--line);
 }
 
-
 .environment > div {
   display: grid;
 
-  grid-template-columns: 130px 1fr;
-
-  gap: 20px;
+  grid-template-columns: 180px 1fr;
+  gap: 1rem;
+  align-items: baseline;
 
   padding: 13px 0;
 
   border-bottom: 1px solid var(--line);
 }
 
-
 .environment dt {
   color: var(--text);
 
-  font-size: 0.88rem;
-
-  font-weight: 650;
+  font-size: var(--fs-sm);
+  font-weight: 600;
 }
 
+/* Icono opcional antes de cada etiqueta (ej. <i class="fa-...">) */
+.environment dt i {
+  width: 1.2rem;
+  margin-right: 0.4rem;
+}
 
 .environment dd {
   margin: 0;
 
   color: var(--muted);
 
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
+  opacity: 0.8;
 }
 
 
@@ -574,7 +690,7 @@ button:focus-visible {
 .project h3 {
   margin: 0;
 
-  font-size: 1rem;
+  font-size: var(--fs-base);
 
   font-weight: 680;
 }
@@ -587,14 +703,14 @@ button:focus-visible {
 
   color: var(--muted);
 
-  font-size: 0.92rem;
+  font-size: var(--fs-base);
 }
 
 
 .project-meta {
   color: var(--quiet);
 
-  font-size: 0.78rem;
+  font-size: var(--fs-2xs);
 
   white-space: nowrap;
 }
@@ -611,7 +727,7 @@ button:focus-visible {
 
   color: var(--quiet);
 
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
 }
 
 
@@ -619,6 +735,8 @@ button:focus-visible {
   color: var(--accent);
 
   font-weight: 650;
+
+  transition: color var(--transition);
 }
 
 
@@ -649,7 +767,7 @@ button:focus-visible {
 
   color: var(--quiet);
 
-  font-size: 0.9rem;
+  font-size: var(--fs-base);
 }
 
 
@@ -687,7 +805,7 @@ button:focus-visible {
 
   color: var(--text);
 
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
 
   font-weight: 680;
 }
@@ -698,7 +816,7 @@ button:focus-visible {
 
   color: var(--muted);
 
-  font-size: 0.92rem;
+  font-size: var(--fs-base);
 }
 
 
@@ -757,7 +875,7 @@ button:focus-visible {
 .timeline h3 {
   margin: 0;
 
-  font-size: 0.96rem;
+  font-size: var(--fs-base);
 
   font-weight: 680;
 }
@@ -770,7 +888,7 @@ button:focus-visible {
 
   color: var(--muted);
 
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
 }
 
 
@@ -781,7 +899,7 @@ button:focus-visible {
 
   color: var(--quiet);
 
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
 }
 
 
@@ -803,7 +921,7 @@ button:focus-visible {
 
   color: var(--text);
 
-  font-size: 0.96rem;
+  font-size: var(--fs-base);
 
   font-weight: 680;
 }
@@ -850,7 +968,7 @@ button:focus-visible {
 
   color: var(--text);
 
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-size: var(--fs-xl);
 
   line-height: 1.55;
 
@@ -910,11 +1028,13 @@ button:focus-visible {
 .document a {
   color: var(--accent);
 
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
 
   font-weight: 650;
 
   white-space: nowrap;
+
+  transition: color var(--transition);
 }
 
 
@@ -949,7 +1069,7 @@ button:focus-visible {
 
   border-bottom: 1px solid var(--line);
 
-  transition: color 0.18s ease;
+  transition: color var(--transition);
 }
 
 
@@ -976,13 +1096,17 @@ button:focus-visible {
   stroke: currentColor;
 
   stroke-width: 1.8;
+
+  transition: stroke var(--transition);
 }
 
 
 .handle {
   color: var(--quiet);
 
-  font-size: 0.83rem;
+  font-size: var(--fs-xs);
+
+  transition: color var(--transition);
 }
 
 
@@ -1000,7 +1124,7 @@ button:focus-visible {
 
   color: var(--quiet);
 
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
 }
 
 
@@ -1019,10 +1143,13 @@ button:focus-visible {
 
 
 /* =========================================================
-   MENÚ Y DISEÑO MÓVIL
+   DISEÑO MÓVIL
+   Un solo punto de quiebre (680px) para todos los ajustes de
+   pantallas pequeñas, en vez de tener varios @media distintos
+   repitiendo reglas parecidas.
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 680px) {
 
   /* Reducimos el ancho lateral */
   .wrap {
@@ -1039,7 +1166,7 @@ button:focus-visible {
   }
 
 
-  /* Mostramos el botón */
+  /* Mostramos el botón del menú */
   .menu-button {
     display: block;
   }
@@ -1083,11 +1210,18 @@ button:focus-visible {
   }
 
 
-  /* Entorno técnico en una sola columna */
+  /* Entorno técnico en una sola columna, con o sin foto */
+  .environment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .environment-image {
+    max-width: 420px;
+  }
+
   .environment > div {
     grid-template-columns: 1fr;
-
-    gap: 3px;
+    gap: 4px;
   }
 
 
@@ -1135,6 +1269,8 @@ button:focus-visible {
 
 /* =========================================================
    REDUCCIÓN DE MOVIMIENTO
+   Respeta a quien desactivó las animaciones en su sistema:
+   quita también la animación de entrada de las fotos.
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1144,7 +1280,9 @@ button:focus-visible {
   }
 
 
-  .hero > * {
+  .hero > *,
+  .about-image,
+  .environment-image {
     opacity: 1;
 
     animation: none;
@@ -1154,95 +1292,13 @@ button:focus-visible {
   .nav-links a,
   .text-link,
   .project-footer a,
-  .network {
+  .document a,
+  .network,
+  .network svg,
+  .handle,
+  .about-image img,
+  .environment-image img {
     transition: none;
   }
 
-}
-
-.about-image {
-  width: 160px;
-  margin: 0;
-}
-
-.about-image img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.environment-layout {
-  display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.environment-image {
-  margin: 0;
-}
-
-.environment-image img {
-  display: block;
-  width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
-}
-
-.environment-image figcaption {
-  margin-top: 0.6rem;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  opacity: 0.65;
-}
-
-.environment-image a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.environment {
-  display: grid;
-  gap: 1rem;
-  margin: 1.5rem 0 0;
-}
-
-.environment > div {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.environment dt {
-  font-weight: 600;
-}
-
-.environment dt i {
-  width: 1.2rem;
-  margin-right: 0.4rem;
-}
-
-.environment dd {
-  margin: 0;
-  opacity: 0.8;
-}
-
-@media (max-width: 700px) {
-  .environment-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .environment-image {
-    max-width: 420px;
-  }
-
-  .environment > div {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
-  }
 }
