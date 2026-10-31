@@ -1,451 +1,721 @@
-/* =========================================================
-   PORTAFOLIO PERSONAL
-   Daniel Alejandro Barrientos Soto
+/*
+ * Daniel Alejandro Barrientos Soto
+ * JavaScript principal del sitio.
+ *
+ * Funciones:
+ * - Controlar la navegación móvil.
+ * - Cargar contenido desde archivos JSON.
+ * - Actualizar las secciones que tienen datos dinámicos.
+ *
+ * Sin frameworks ni dependencias externas.
+ */
 
-   JavaScript principal del sitio.
+"use strict";
 
-   Responsabilidades:
-   - Controlar el menú móvil (hamburguesa con Font Awesome).
-   - Cargar información desde archivos JSON.
-   - Renderizar formación, tecnologías, proyectos,
-     documentos y enlaces.
-   - Manejar errores básicos de carga.
-   ========================================================= */
+/* -------------------------------------------------------------------------- */
+/* Selectores y utilidades                                                     */
+/* -------------------------------------------------------------------------- */
 
+const $ = (selector, parent = document) => parent.querySelector(selector);
 
-/* Atajo para no escribir document.querySelector todo el tiempo */
-const $ = (selector) => document.querySelector(selector);
+const isObject = (value) =>
+    typeof value === "object" && value !== null && !Array.isArray(value);
 
+const isNonEmptyString = (value) =>
+    typeof value === "string" && value.trim().length > 0;
 
-/* Ícono de flecha para enlaces externos (usado en "Internet") */
-const externalIcon = `
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M5 12h14M13 6l6 6-6 6"></path>
-  </svg>
-`;
+function createElement(tagName, className, text) {
+    const element = document.createElement(tagName);
 
+    if (className) {
+        element.className = className;
+    }
 
-/* =========================================================
-   MENÚ DE NAVEGACIÓN (hamburguesa)
-   ========================================================= */
+    if (text !== undefined && text !== null) {
+        element.textContent = String(text);
+    }
+
+    return element;
+}
+
+/*
+ * Acepta enlaces HTTP(S), correo, teléfono y rutas relativas.
+ * Rechaza protocolos ejecutables como javascript: y data:.
+ */
+function getSafeUrl(value) {
+    if (!isNonEmptyString(value)) {
+        return null;
+    }
+
+    try {
+        const url = new URL(value.trim(), document.baseURI);
+        const allowedProtocols = ["http:", "https:", "mailto:", "tel:"];
+
+        if (!allowedProtocols.includes(url.protocol)) {
+            return null;
+        }
+
+        return {
+            href: url.href,
+            isExternal: ["http:", "https:"].includes(url.protocol)
+                && url.origin !== window.location.origin
+        };
+    } catch {
+        return null;
+    }
+}
+
+function configureLink(link, value) {
+    const safeUrl = getSafeUrl(value);
+
+    if (!safeUrl) {
+        return false;
+    }
+
+    link.href = safeUrl.href;
+
+    if (safeUrl.isExternal) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+    }
+
+    return true;
+}
+
+function appendExternalArrow(parent) {
+    const namespace = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(namespace, "svg");
+    const path = document.createElementNS(namespace, "path");
+
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+
+    path.setAttribute("d", "M5 12h14M13 6l6 6-6 6");
+
+    svg.append(path);
+    parent.append(svg);
+}
+
+function getStringList(values) {
+    if (!Array.isArray(values)) {
+        return [];
+    }
+
+    return values
+        .filter(isNonEmptyString)
+        .map((value) => value.trim());
+}
+
+/* -------------------------------------------------------------------------- */
+/* Navegación móvil                                                            */
+/* -------------------------------------------------------------------------- */
 
 const menuButton = $(".menu-button");
 const menu = $("#nav-links");
+const menuLabel = menuButton ? $("span", menuButton) : null;
 
-/* Guardamos el ícono y el texto del botón por separado.
-   Antes se hacía menuButton.textContent = "..." y eso borraba
-   el ícono de Font Awesome cada vez que se abría/cerraba el
-   menú. Actualizando solo el ícono y el <span> se evita eso. */
-const menuIcon = menuButton?.querySelector("i");
-const menuLabel = menuButton?.querySelector("span");
+function setMenuOpen(isOpen) {
+    if (!menu || !menuButton) {
+        return;
+    }
 
-/**
- * Aplica el estado abierto/cerrado al menú, al botón,
- * al ícono (barras ↔ equis) y al texto del botón.
- *
- * @param {boolean} isOpen
- */
-function setMenuState(isOpen) {
-  if (!menu || !menuButton) return;
+    menu.classList.toggle("open", isOpen);
 
-  menu.classList.toggle("open", isOpen);
-  menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute("aria-expanded", String(isOpen));
 
-  if (menuIcon) {
-    menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
-  }
+    menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+    );
 
-  if (menuLabel) {
-    menuLabel.textContent = isOpen ? "Cerrar" : "Menú";
-  }
+    if (menuLabel) {
+        menuLabel.textContent = isOpen ? "Cerrar" : "Menú";
+    }
 }
 
 function closeMenu() {
-  setMenuState(false);
+    setMenuOpen(false);
 }
 
-function toggleMenu() {
-  if (!menu) return;
-  setMenuState(!menu.classList.contains("open"));
+if (menuButton && menu) {
+
+    menuButton.addEventListener("click", () => {
+        const isOpen = menu.classList.contains("open");
+
+        setMenuOpen(!isOpen);
+    });
+
+    menu.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        const clickedInsideMenu = menu.contains(event.target);
+        const clickedButton = menuButton.contains(event.target);
+
+        if (
+            menu.classList.contains("open")
+            && !clickedInsideMenu
+            && !clickedButton
+        ) {
+            closeMenu();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menu.classList.contains("open")) {
+            closeMenu();
+            menuButton.focus();
+        }
+    });
+
+    /* El menú móvil no debe permanecer abierto al volver al escritorio. */
+    const desktopLayout = window.matchMedia("(min-width: 761px)");
+
+    desktopLayout.addEventListener("change", closeMenu);
+
+    setMenuOpen(false);
 }
 
-if (menuButton) {
-  menuButton.addEventListener("click", toggleMenu);
+/* -------------------------------------------------------------------------- */
+/* Presentación                                                                */
+/* -------------------------------------------------------------------------- */
+
+function setText(selector, value) {
+    const target = $(selector);
+
+    if (target && isNonEmptyString(value)) {
+        target.textContent = value.trim();
+    }
 }
 
-/* Al hacer clic en un enlace del menú (móvil), se cierra solo */
-if (menu) {
-  menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-}
-
-
-/* =========================================================
-   SEGURIDAD BÁSICA PARA TEXTO DINÁMICO
-   ========================================================= */
-
-/**
- * Escapa caracteres especiales antes de insertar texto que
- * viene de los archivos JSON, para evitar HTML/JS no deseado.
- *
- * @param {unknown} value
- * @returns {string}
- */
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-
-/* =========================================================
-   ENLACES DESTACADOS DEL HERO
-   ========================================================= */
-
-/**
- * Renderiza los enlaces marcados como "featured" en la portada.
- *
- * @param {string} selector
- * @param {Array} links
- */
-function addFeaturedLinks(selector, links = []) {
-  const target = $(selector);
-  if (!target) return;
-
-  const validLinks = links.filter(
-    (link) => link && link.url && link.label && link.featured === true
-  );
-
-  target.innerHTML = validLinks
-    .map((link) => {
-      const label = escapeHtml(link.label);
-      const url = escapeHtml(link.url);
-
-      return `<a class="text-link" href="${url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
-    })
-    .join("");
-}
-
-
-/* =========================================================
-   ENLACES DE INTERNET
-   ========================================================= */
-
-/**
- * Renderiza todos los enlaces públicos (redes, sitios, etc.).
- *
- * @param {string} selector
- * @param {Array} links
- */
-function addNetworkLinks(selector, links = []) {
-  const target = $(selector);
-  if (!target) return;
-
-  const validLinks = links.filter((link) => link && link.url && link.label);
-
-  if (!validLinks.length) {
-    target.innerHTML = `<p class="empty">Aún no hay enlaces públicos configurados.</p>`;
-    return;
-  }
-
-  target.innerHTML = validLinks
-    .map((link) => {
-      const label = escapeHtml(link.label);
-      const handle = escapeHtml(link.handle ?? "");
-      const url = escapeHtml(link.url);
-
-      return `
-        <a class="network" href="${url}" target="_blank" rel="noopener noreferrer">
-          <span>${externalIcon}<strong>${label}</strong></span>
-          <span class="handle">${handle} ↗</span>
-        </a>
-      `;
-    })
-    .join("");
-}
-
-
-/* =========================================================
-   TECNOLOGÍAS
-   ========================================================= */
-
-/**
- * Renderiza un grupo de tecnologías (base actual, en
- * desarrollo, áreas de interés).
- *
- * @param {string} selector
- * @param {Array} items
- */
-function renderTechGroup(selector, items = []) {
-  const target = $(selector);
-  if (!target) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    target.textContent = "Por definir.";
-    return;
-  }
-
-  target.innerHTML = items
-    .map((item) => `<span class="tech-item">${escapeHtml(item)}</span>`)
-    .join("");
-}
-
-
-/* =========================================================
-   SECCIÓN "AHORA"
-   ========================================================= */
-
-/**
- * Renderiza las actividades actuales.
- *
- * @param {Array} items
- */
-function renderNow(items = []) {
-  const target = $("#now-list");
-  if (!target) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    target.innerHTML = `<li>Información pendiente de actualizar.</li>`;
-    return;
-  }
-
-  target.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-}
-
-
-/* =========================================================
-   FORMACIÓN ACADÉMICA
-   ========================================================= */
-
-/**
- * Renderiza la línea de tiempo de formación académica.
- *
- * @param {Array} education
- */
-function renderEducation(education = []) {
-  const target = $("#education-list");
-  if (!target) return;
-
-  if (!Array.isArray(education) || education.length === 0) {
-    target.innerHTML = `
-      <li>
-        <h3>Formación en actualización</h3>
-        <span class="institution">Información académica pendiente.</span>
-      </li>
-    `;
-    return;
-  }
-
-  target.innerHTML = education
-    .map((item) => {
-      const program = escapeHtml(item.program);
-      const institution = escapeHtml(item.institution);
-      const period = escapeHtml(item.period);
-      const status = escapeHtml(item.status);
-
-      return `
-        <li>
-          <h3>${program}</h3>
-          <span class="institution">${institution}</span>
-          <span class="meta">${period} · ${status}</span>
-        </li>
-      `;
-    })
-    .join("");
-}
-
-
-/* =========================================================
-   PROYECTOS
-   Nota: hoy el sitio no tiene una sección con id="projects-list",
-   así que esta función no hace nada por ahora (el "if" de abajo
-   la protege). Cuando agregues esa sección, empieza a funcionar
-   sola, sin tocar este archivo.
-   ========================================================= */
-
-/**
- * Renderiza los proyectos públicos. Solo se muestran los que
- * existen realmente en projects.json, nunca proyectos inventados.
- *
- * @param {Array} projects
- */
-function renderProjects(projects = []) {
-  const target = $("#projects-list");
-  if (!target) return;
-
-  if (!Array.isArray(projects) || projects.length === 0) {
-    target.innerHTML = `<p class="empty">Todavía no hay proyectos públicos configurados.</p>`;
-    return;
-  }
-
-  target.innerHTML = projects
-    .map((project) => {
-      const name = escapeHtml(project.name);
-      const description = escapeHtml(project.description);
-      const status = escapeHtml(project.status);
-
-      const technologies = Array.isArray(project.tech)
-        ? project.tech.map((tech) => escapeHtml(tech)).join(" · ")
-        : "";
-
-      const technologyMarkup = technologies
-        ? `<span class="project-meta">${technologies}</span>`
-        : "";
-
-      const githubMarkup = project.url
-        ? `<a href="${escapeHtml(project.url)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
-        : "";
-
-      return `
-        <article class="project">
-          <h3>${name}</h3>
-          ${technologyMarkup}
-          <p>${description}</p>
-          <div class="project-footer">
-            <span class="status">${status}</span>
-            ${githubMarkup}
-          </div>
-        </article>
-      `;
-    })
-    .join("");
-}
-
-
-/* =========================================================
-   DOCUMENTOS
-   ========================================================= */
-
-/**
- * Renderiza los documentos públicos (CV, certificados, etc.).
- *
- * @param {Array} docs
- */
-function renderDocuments(docs = []) {
-  const target = $("#documents-list");
-  if (!target) return;
-
-  /* Usamos "doc" y no "document" para no tapar el "document"
-     global del navegador (el que usa $() en todo este archivo). */
-  const validDocs = Array.isArray(docs)
-    ? docs.filter((doc) => doc && doc.file && doc.name)
-    : [];
-
-  if (!validDocs.length) {
-    target.innerHTML = `<p class="empty">Aún no hay documentos públicos configurados.</p>`;
-    return;
-  }
-
-  target.innerHTML = validDocs
-    .map((doc) => {
-      const name = escapeHtml(doc.name);
-      const type = escapeHtml(doc.type ?? "");
-      const file = escapeHtml(doc.file);
-
-      return `
-        <div class="document">
-          <span><strong>${name}</strong><small>${type}</small></span>
-          <a href="${file}" target="_blank" rel="noopener noreferrer">Ver / descargar ↗</a>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-
-/* =========================================================
-   CARGA DE ARCHIVOS JSON
-   ========================================================= */
-
-/**
- * Descarga un archivo JSON y valida que la respuesta HTTP
- * haya sido correcta. Las rutas son relativas al index.html.
- *
- * @param {string} path
- * @returns {Promise<any>}
- */
-async function fetchJson(path) {
-  const response = await fetch(path, { cache: "no-cache" });
-
-  if (!response.ok) {
-    throw new Error(`No se pudo cargar ${path}: HTTP ${response.status}`);
-  }
-
-  return response.json();
-}
-
-
-/* =========================================================
-   MENSAJE DE ERROR
-   ========================================================= */
-
-/**
- * Muestra un aviso en el hero cuando los datos no se
- * pudieron cargar (por ejemplo, sin conexión).
- */
-function showLoadError() {
-  const hero = $(".hero");
-  if (!hero || $(".load-error")) return;
-
-  const message = document.createElement("p");
-  message.className = "load-error";
-  message.textContent = "No se pudieron cargar algunos datos del sitio.";
-
-  hero.appendChild(message);
-}
-
-
-/* =========================================================
-   CARGA PRINCIPAL DEL SITIO
-   ========================================================= */
-
-async function loadSite() {
-  try {
-    /* Las cuatro fuentes de datos se piden al mismo tiempo */
-    const [profile, projects, links, documents] = await Promise.all([
-      fetchJson("./data/profile.json"),
-      fetchJson("./data/projects.json"),
-      fetchJson("./data/links.json"),
-      fetchJson("./data/documents.json"),
-    ]);
-
-    /* --- Información principal --- */
-    if (profile?.name) {
-      document.title = `${profile.name} | Portafolio`;
+function renderProfile(profile) {
+    if (!isObject(profile)) {
+        return;
     }
 
-    const name = $("#name");
-    const role = $("#role");
-    const intro = $("#intro");
-    const about = $("#about");
+    const name = isNonEmptyString(profile.name)
+        ? profile.name.trim()
+        : null;
 
-    if (name) name.textContent = profile?.name ?? "Daniel Alejandro Barrientos Soto";
-    if (role) role.textContent = profile?.role ?? "Estudiante de Ingeniería de Sistemas y Computación";
-    if (intro) intro.textContent = profile?.intro ?? "";
-    if (about) about.textContent = profile?.about ?? "";
+    if (name) {
+        document.title = `${name} | Sitio personal`;
+        setText("#name", name);
+    }
 
-    /* --- Resto de secciones --- */
-    addFeaturedLinks("#hero-links", Array.isArray(links) ? links : []);
-    renderNow(profile?.now ?? []);
+    setText("#role", profile.role);
+    setText("#intro", profile.intro);
+    setText("#about", profile.about);
 
-    renderTechGroup("#tech-actual", profile?.tech?.actual ?? []);
-    renderTechGroup("#tech-aprendiendo", profile?.tech?.aprendiendo ?? []);
-    renderTechGroup("#tech-interes", profile?.tech?.interes ?? []);
+    renderNow(profile.now);
 
-    renderEducation(profile?.education ?? []);
-    renderProjects(projects);
-    renderDocuments(documents);
+    if (isObject(profile.tech)) {
+        renderTechGroup("#tech-actual", profile.tech.actual);
+        renderTechGroup("#tech-aprendiendo", profile.tech.aprendiendo);
+        renderTechGroup("#tech-interes", profile.tech.interes);
+    }
 
-    addNetworkLinks("#links-list", Array.isArray(links) ? links : []);
-
-  } catch (error) {
-    console.error("No se pudieron cargar los datos del sitio.", error);
-    showLoadError();
-  }
+    renderEducation(profile.education);
 }
 
-loadSite();
+/* -------------------------------------------------------------------------- */
+/* Enlaces principales                                                         */
+/* -------------------------------------------------------------------------- */
+
+function renderFeaturedLinks(links) {
+    const target = $("#hero-links");
+
+    if (!target || !Array.isArray(links)) {
+        return;
+    }
+
+    const featuredLinks = links.filter((item) =>
+        isObject(item)
+        && item.featured === true
+        && isNonEmptyString(item.label)
+        && getSafeUrl(item.url)
+    );
+
+    if (featuredLinks.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    featuredLinks.forEach((item) => {
+        const link = createElement(
+            "a",
+            "text-link",
+            `${item.label.trim()} ↗`
+        );
+
+        if (configureLink(link, item.url)) {
+            fragment.append(link);
+        }
+    });
+
+    if (fragment.childNodes.length > 0) {
+        target.replaceChildren(fragment);
+    }
+}
+
+function renderNetworkLinks(links) {
+    const target = $("#links-list");
+
+    if (!target || !Array.isArray(links)) {
+        return;
+    }
+
+    const validLinks = links.filter((item) =>
+        isObject(item)
+        && isNonEmptyString(item.label)
+        && getSafeUrl(item.url)
+    );
+
+    if (validLinks.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validLinks.forEach((item) => {
+        const link = createElement("a", "network");
+        const main = createElement("span");
+
+        const label = createElement(
+            "strong",
+            "",
+            item.label.trim()
+        );
+
+        const handleText = isNonEmptyString(item.handle)
+            ? `${item.handle.trim()} ↗`
+            : "Abrir ↗";
+
+        const handle = createElement(
+            "span",
+            "handle",
+            handleText
+        );
+
+        appendExternalArrow(main);
+
+        main.append(label);
+        link.append(main, handle);
+
+        if (configureLink(link, item.url)) {
+            fragment.append(link);
+        }
+    });
+
+    if (fragment.childNodes.length > 0) {
+        target.replaceChildren(fragment);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sección «Ahora»                                                             */
+/* -------------------------------------------------------------------------- */
+
+function renderNow(items) {
+    const target = $("#now-list");
+    const validItems = getStringList(items);
+
+    if (!target || validItems.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validItems.forEach((item) => {
+        fragment.append(
+            createElement("li", "", item)
+        );
+    });
+
+    target.replaceChildren(fragment);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Tecnologías                                                                 */
+/* -------------------------------------------------------------------------- */
+
+function renderTechGroup(selector, items) {
+    const target = $(selector);
+    const validItems = getStringList(items);
+
+    if (!target || validItems.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validItems.forEach((item) => {
+        fragment.append(
+            createElement("span", "tech-item", item)
+        );
+    });
+
+    target.replaceChildren(fragment);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Formación académica                                                         */
+/* -------------------------------------------------------------------------- */
+
+function renderEducation(education) {
+    const target = $("#education-list");
+
+    if (!target || !Array.isArray(education)) {
+        return;
+    }
+
+    const validEntries = education.filter((item) =>
+        isObject(item) && isNonEmptyString(item.program)
+    );
+
+    if (validEntries.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validEntries.forEach((item) => {
+        const entry = createElement("li");
+
+        const program = createElement(
+            "h3",
+            "",
+            item.program.trim()
+        );
+
+        entry.append(program);
+
+        if (isNonEmptyString(item.institution)) {
+            entry.append(
+                createElement(
+                    "span",
+                    "institution",
+                    item.institution.trim()
+                )
+            );
+        }
+
+        const metadata = [item.period, item.status]
+            .filter(isNonEmptyString)
+            .map((value) => value.trim());
+
+        if (metadata.length > 0) {
+            entry.append(
+                createElement(
+                    "span",
+                    "meta",
+                    metadata.join(" · ")
+                )
+            );
+        }
+
+        fragment.append(entry);
+    });
+
+    target.replaceChildren(fragment);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Proyectos                                                                   */
+/* -------------------------------------------------------------------------- */
+
+function renderProjects(projects) {
+    /* Coincide con el contenedor .projects-list del HTML actual. */
+    const target = $("#projects-list") || $(".projects-list");
+
+    if (!target || !Array.isArray(projects)) {
+        return;
+    }
+
+    const validProjects = projects.filter((item) =>
+        isObject(item) && isNonEmptyString(item.name)
+    );
+
+    if (validProjects.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validProjects.forEach((project) => {
+        const article = createElement("article", "project-card");
+
+        const title = createElement(
+            "h3",
+            "",
+            project.name.trim()
+        );
+
+        article.append(title);
+
+        if (isNonEmptyString(project.description)) {
+            article.append(
+                createElement(
+                    "p",
+                    "",
+                    project.description.trim()
+                )
+            );
+        }
+
+        const technologies = getStringList(project.tech);
+
+        if (technologies.length > 0) {
+            article.append(
+                createElement(
+                    "p",
+                    "project-technologies",
+                    technologies.join(" · ")
+                )
+            );
+        }
+
+        const footer = createElement("div", "project-footer");
+        let hasFooterContent = false;
+
+        if (isNonEmptyString(project.status)) {
+            footer.append(
+                createElement(
+                    "span",
+                    "status",
+                    project.status.trim()
+                )
+            );
+
+            hasFooterContent = true;
+        }
+
+        if (isNonEmptyString(project.url)) {
+            const projectLink = createElement(
+                "a",
+                "",
+                "Ver proyecto ↗"
+            );
+
+            if (configureLink(projectLink, project.url)) {
+                footer.append(projectLink);
+                hasFooterContent = true;
+            }
+        }
+
+        if (hasFooterContent) {
+            article.append(footer);
+        }
+
+        fragment.append(article);
+    });
+
+    target.replaceChildren(fragment);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Documentos                                                                  */
+/* -------------------------------------------------------------------------- */
+
+function renderDocuments(documents) {
+    /* El HTML actual utiliza .documents y contiene el CV como respaldo. */
+    const target = $("#documents-list") || $(".documents");
+
+    if (!target || !Array.isArray(documents)) {
+        return;
+    }
+
+    const validDocuments = documents.filter((item) =>
+        isObject(item)
+        && isNonEmptyString(item.name)
+        && getSafeUrl(item.file)
+    );
+
+    if (validDocuments.length === 0) {
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    validDocuments.forEach((item) => {
+        const link = createElement("a", "document-link");
+        const details = createElement("span");
+
+        const name = createElement(
+            "strong",
+            "",
+            item.name.trim()
+        );
+
+        const description = createElement(
+            "small",
+            "",
+            isNonEmptyString(item.type)
+                ? item.type.trim()
+                : "Documento"
+        );
+
+        const arrow = createElement("span", "", "↗");
+
+        details.append(name, description);
+        link.append(details, arrow);
+
+        if (item.download === true) {
+            link.download = "";
+        }
+
+        if (configureLink(link, item.file)) {
+            fragment.append(link);
+        }
+    });
+
+    if (fragment.childNodes.length > 0) {
+        target.replaceChildren(fragment);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Carga de datos                                                              */
+/* -------------------------------------------------------------------------- */
+
+async function fetchJson(path) {
+    const response = await fetch(path, {
+        cache: "no-cache"
+    });
+
+    if (!response.ok) {
+        throw new Error(
+            `Error HTTP ${response.status}: ${path}`
+        );
+    }
+
+    return response.json();
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mensajes de error                                                           */
+/* -------------------------------------------------------------------------- */
+
+function showLoadError(failedFiles) {
+    const hero = $(".hero");
+
+    if (
+        !hero
+        || failedFiles.length === 0
+        || $(".load-error", hero)
+    ) {
+        return;
+    }
+
+    const message = createElement(
+        "p",
+        "load-error",
+        "No se pudieron actualizar algunos contenidos. La información disponible en la página sigue visible."
+    );
+
+    message.setAttribute("role", "status");
+    message.setAttribute("aria-live", "polite");
+
+    hero.append(message);
+
+    failedFiles.forEach(({ path, error }) => {
+        console.warn(`No se pudo cargar ${path}.`, error);
+    });
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inicialización                                                              */
+/* -------------------------------------------------------------------------- */
+
+async function loadSite() {
+    const sources = [
+        {
+            key: "profile",
+            path: "./data/profile.json",
+            validate: isObject
+        },
+        {
+            key: "projects",
+            path: "./data/projects.json",
+            validate: Array.isArray
+        },
+        {
+            key: "links",
+            path: "./data/links.json",
+            validate: Array.isArray
+        },
+        {
+            key: "documents",
+            path: "./data/documents.json",
+            validate: Array.isArray
+        }
+    ];
+
+    const results = await Promise.allSettled(
+        sources.map(({ path }) => fetchJson(path))
+    );
+
+    const data = {};
+    const failedFiles = [];
+
+    results.forEach((result, index) => {
+        const source = sources[index];
+
+        if (result.status === "rejected") {
+            failedFiles.push({
+                path: source.path,
+                error: result.reason
+            });
+
+            return;
+        }
+
+        if (!source.validate(result.value)) {
+            failedFiles.push({
+                path: source.path,
+                error: new TypeError(
+                    "El archivo tiene una estructura inesperada."
+                )
+            });
+
+            return;
+        }
+
+        data[source.key] = result.value;
+    });
+
+    /* Cada archivo se procesa de forma independiente. */
+    if (data.profile) {
+        renderProfile(data.profile);
+    }
+
+    if (data.projects) {
+        renderProjects(data.projects);
+    }
+
+    if (data.links) {
+        renderFeaturedLinks(data.links);
+        renderNetworkLinks(data.links);
+    }
+
+    if (data.documents) {
+        renderDocuments(data.documents);
+    }
+
+    showLoadError(failedFiles);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Inicio del sitio                                                            */
+/* -------------------------------------------------------------------------- */
+
+loadSite().catch((error) => {
+    console.error(
+        "Ocurrió un error al iniciar el sitio.",
+        error
+    );
+});
