@@ -1,0 +1,34 @@
+{
+    "name": "Daniel Barrientos ߷",
+    "role": "Estudiante de Ingeniería de Sistemas y Computación",
+    "intro": "Me gusta programar y entender cómo funcionan los computadores, desde el software hasta el hardware.",
+    "about": "Mi interés por la informática empezó con la programación y la formación técnica en desarrollo de software.",
+    "now": [
+        "Estudiando Ingeniería de Sistemas y Computación.",
+        "Practicando Java y programación.",
+        "Repasando matemáticas y fundamentos de computación."
+    ],
+    "tech": {
+        "actual": [
+            "Java",
+            "Git",
+            "GitHub",
+            "Fedora Linux"
+        ],
+        "aprendiendo": [
+            "Programación orientada a objetos",
+            "Lógica de programación",
+            "Estructuras de control",
+            "Matemáticas"
+        ],
+        "interes": [
+            "Computación científica",
+            "Inteligencia artificial",
+            "Física computacional",
+            "Electrónica",
+            "Robótica",
+            "Sistemas embebidos",
+            "Simulación"
+        ]
+    }
+}
